@@ -6,12 +6,22 @@ approachable than most of the materials available on-line, which tend to assume
 that the user is proficient in the C++ programming language. Please see below for
 a brief summary of what each individual tutorial covers and how to use it.
 
-Disclaimer: this offering is not approved or endorsed by OpenCFD Limited, producer
-and distributor of the OpenFOAM software via www.openfoam.com, and owner of the
-OPENFOAM® and OpenCFD® trade marks.
+It's advisable that you go through these basic C++ tutorials, having tried compiling
+and running most of the examples, before continuing:
+http://www.cplusplus.com/doc/tutorial/
+
+Also, it's assumed you're familiar with running and setting up OpenFOAM cases.
+If not, it's highly recommended you go through the official tutorials before you
+dive into the programming part:
+https://cfd.direct/openfoam/user-guide/tutorials/
 
 Enjoy and please provide me with feedback to make these tutorials more useful!
 Contributions from the community are also more than welcome!
+
+
+Disclaimer: this offering is not approved or endorsed by OpenCFD Limited, producer
+and distributor of the OpenFOAM software via www.openfoam.com, and owner of the
+OPENFOAM® and OpenCFD® trade marks.
 
 ---------
 Tutorial 0 - Hello world
