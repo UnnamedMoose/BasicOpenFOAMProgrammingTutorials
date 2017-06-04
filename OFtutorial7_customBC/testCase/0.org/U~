@@ -1,0 +1,63 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volVectorField;
+    location    "0";
+    object      U;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+#include        "../system/runConditions"
+
+dimensions      [0 1 -1 0 0 0 0];
+
+internalField   uniform ($flowVelocity 0 0);
+
+boundaryField
+{
+    inlet
+    {
+    	// prescribes a parabolic inlet profile
+        type       prescribedPipeInlet;
+        // (optional, default exponential) type of profile used for approximation
+        approximationType Polhausen;
+        // pipe radius
+        R	$Rpipe;
+        // magnitude of flow velocity into the pipe
+        flowSpeed	$flowVelocity;
+        // (optional, defaults at origin) centrepoint of the pipe used to determine the radius of each face
+        centrepoint	(0 0 0);
+        // inlet BL thickness as a function of radius
+        deltaByR $deltaByR;
+        // (optional, default 0) pressure gradient coefficient (see Polhausen profile literature for explanation)
+        lambda 0.;
+        // dummy value overwritten by the BC, used for initialisation only
+        value		$internalField;
+    }
+    outlet
+    {
+        type            pressureInletOutletVelocity;
+        phi             phi;
+        value           $internalField;
+    }
+    pipe
+    {
+    	type fixedValue;
+    	value uniform (0 0 0);
+    }
+    "symmetry.*"
+    {
+        type            symmetryPlane;
+    }
+}
+
+
+// ************************************************************************* //

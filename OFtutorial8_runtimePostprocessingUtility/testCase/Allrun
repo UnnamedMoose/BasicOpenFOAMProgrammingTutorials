@@ -1,0 +1,18 @@
+#!/bin/bash
+
+./Allrun.mesh > log.mesh 2>&1
+
+# Need to create the faceZone for runtime post-processing
+topoSet > log.topoSet 2>&1
+
+cp -r 0.org 0
+
+potentialFoam > log.potentialFoam 2>&1
+
+echo "Finished preparing, running the solver."
+
+simpleFoam > log.run 2>&1
+
+echo "Done."
+
+# ----------------------------------------------------------------- end-of-file

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+blockMesh > log.blockMesh
+decomposePar > log.decomposePar
+mpirun -np 4 ofTutorial4 -parallel
+rm -r processor* 2>/dev/null

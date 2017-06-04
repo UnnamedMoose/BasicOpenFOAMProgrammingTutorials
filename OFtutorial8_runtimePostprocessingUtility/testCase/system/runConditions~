@@ -1,0 +1,53 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.0.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+// this file controls:
+// - initial conditions for turbulence modelling
+// - initial flow field and boundary condition values
+
+//==================
+// MESH SETTINGS
+
+// length of the pipe [m]
+Lpipe 0.68247;
+// radius of the pipe [m]
+Rpipe 0.02625;
+
+// number of cells
+//	- along the pipe
+Nx 100;
+//	- in the inner part of the mesh at the pipe centreline (per radius)
+NRinner 30;
+//	- in the boundary layer part of the mesh (per radius)
+NRouter 25;
+
+// cell size ratio between the cell at the wall and that in the free stream in the near-wall blocks
+expRatWall 0.05;
+
+// whether to create 1/4th, 1/2, or a full pipe
+noQuarters 1;
+
+//==================
+// FLUID PROPERTIES
+visc	1.09e-6;
+rho		998.8;
+
+//==================
+// FLOW PARAMETERS
+pressure	0;
+flowVelocity 2;
+deltaByR 0.1;
+
+// inlet values
+turbulentKE	6.0000E-2;
+turbulentOmega	4.4721E+0;
+
+
+// ************************************************************************* //
+
+

@@ -1,0 +1,4 @@
+pipeCalc.C
+pipeCalcFunctionObject.C
+
+LIB = $(FOAM_USER_LIBBIN)/libpipeCalc

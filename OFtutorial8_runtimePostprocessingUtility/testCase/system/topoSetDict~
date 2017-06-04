@@ -1,0 +1,126 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+	// create a cellSet which contains all cells up to the plane of interest
+   {
+        name    inletToPlaneCells;
+        type    cellSet;
+        action  new;
+        source  cylinderToCell;
+        sourceInfo
+        {
+            p1      (-100 0 0);
+            p2      (0.65 0 0);
+            radius  100;
+        }
+    }
+    // move all faces (including internal and boundaries) of the cell set to a face set
+    {
+        name    inletToPlaneFaces;
+        type    faceSet;
+        action  new;
+        source  cellToFace;
+        sourceInfo
+        {
+        	set inletToPlaneCells;
+        	option all;
+        }
+    }
+    // delete all faces not aligned with x (flow direction) up to 45 degrees
+    {
+        name    inletToPlaneFaces;
+        type    faceSet;
+        action  delete;
+        source  normalToFace;
+        sourceInfo
+        {
+        	normal (0 1 0);
+        	cos 0.5;
+        }
+    }
+    {
+        name    inletToPlaneFaces;
+        type    faceSet;
+        action  delete;
+        source  normalToFace;
+        sourceInfo
+        {
+        	normal (0 -1 0);
+        	cos 0.5;
+        }
+    }
+    {
+        name    inletToPlaneFaces;
+        type    faceSet;
+        action  delete;
+        source  normalToFace;
+        sourceInfo
+        {
+        	normal (0 0 1);
+        	cos 0.5;
+        }
+    }
+    {
+        name    inletToPlaneFaces;
+        type    faceSet;
+        action  delete;
+        source  normalToFace;
+        sourceInfo
+        {
+        	normal (0 0 -1);
+        	cos 0.5;
+        }
+    }
+    // remove the internal faces of the cell set from the face set (note the "both" option)
+    {
+        name    inletToPlaneFaces;
+        type    faceSet;
+        action  delete;
+        source  cellToFace;
+        sourceInfo
+        {
+        	set inletToPlaneCells;
+        	option both;
+        }
+    }
+    // remove the inlet plane faces from the face set
+    {
+        name    inletToPlaneFaces;
+        type    faceSet;
+        action  delete;
+        source  patchToFace;
+        sourceInfo
+        {
+        	name inlet;
+        }
+    }
+    // convert the face set to a face zone
+    {
+        name    planeFaceZone;
+        type    faceZoneSet;
+        action  new;
+        source  setToFaceZone;
+        sourceInfo
+        {
+            set     inletToPlaneFaces;
+        }
+    }
+);
+
+// ************************************************************************* //
