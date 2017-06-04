@@ -19,6 +19,8 @@ Enjoy and please provide me with feedback to make these tutorials more useful!
 Contributions from the community are also more than welcome!
 
 
+Copyright by Artur K. Lidtke, 2017.
+
 Disclaimer: this offering is not approved or endorsed by OpenCFD Limited, producer
 and distributor of the OpenFOAM® software via www.openfoam.com, and owner of the
 OPENFOAM® and OpenCFD® trade marks.
@@ -158,36 +160,36 @@ Tutorial 8 - Runtime post processing utility
 
 Tutorial 9 - Transport equation
 
-	Introduces the concepts behind solving a simple scalar transport equation.
+    Introduces the concepts behind solving a simple scalar transport equation.
 
-	The solver sets up the transport problem by importing a fixed velocity field
-	from the last time step and solving the transport of a scalar, beta, in the
-	presence of the velocity, beta being also subject to diffusion characterised
-	by a fixed proportionality constant, gamma. The solver is conceptually similar
-	to the built-in scalarTransportFoam, except it solves a steady-state problem.
-	Key things to note are 1) the syntax behind the scalar transport equation
-	2) how OpenFOAM translates the syntax into specific operations and associates
-	them with entries in system/fvSolution and system/fvSchemes dictionaries
-	3) inclusion of the boundary condition definitions in 0/beta into the equation
-	4) units of the equations being solved and how OpenFOAM handles them.
+    The solver sets up the transport problem by importing a fixed velocity field
+    from the last time step and solving the transport of a scalar, beta, in the
+    presence of the velocity, beta being also subject to diffusion characterised
+    by a fixed proportionality constant, gamma. The solver is conceptually similar
+    to the built-in scalarTransportFoam, except it solves a steady-state problem.
+    Key things to note are 1) the syntax behind the scalar transport equation
+    2) how OpenFOAM translates the syntax into specific operations and associates
+    them with entries in system/fvSolution and system/fvSchemes dictionaries
+    3) inclusion of the boundary condition definitions in 0/beta into the equation
+    4) units of the equations being solved and how OpenFOAM handles them.
 
-	The test case is a simple 2D square domain with fixed scalar inlets at the bottom
-	and the left-hand side. Transport takes place in the presence of a velocity
-	field convecting away from the beta inlets. Once the case is run, it is best
-	to visualise the initial conditions in the "beta" field and the solution to the
-	transport equation saved as the "result" field.
+    The test case is a simple 2D square domain with fixed scalar inlets at the bottom
+    and the left-hand side. Transport takes place in the presence of a velocity
+    field convecting away from the beta inlets. Once the case is run, it is best
+    to visualise the initial conditions in the "beta" field and the solution to the
+    transport equation saved as the "result" field.
 
-	To run:
-		wmake
-		cd testCase
-		./Allrun
+    To run:
+        wmake
+        cd testCase
+        ./Allrun
 
-	Recommended reading:
-		- Wikipedia is always a good start:
-			https://en.wikipedia.org/wiki/Convection%E2%80%93diffusion_equation
-		- Very brief description of the physical and mathematical concepts behind
-			the scalar transport equation by CFD-online:
-			https://www.cfd-online.com/Wiki/Generic_scalar_transport_equation
-		- Chapters 3, 4 and especially 5 in "Numerical Methods in Heat, Mass, and Momentum Transfer"
-			by Murthy, J. Y. 2002:
-			https://engineering.purdue.edu/ME608/webpage/main.pdf
+    Recommended reading:
+        - Wikipedia is always a good start:
+        	https://en.wikipedia.org/wiki/Convection%E2%80%93diffusion_equation
+        - Very brief description of the physical and mathematical concepts behind
+        	the scalar transport equation by CFD-online:
+        	https://www.cfd-online.com/Wiki/Generic_scalar_transport_equation
+        - Chapters 3, 4 and especially 5 in "Numerical Methods in Heat, Mass, and Momentum Transfer"
+        	by Murthy, J. Y. 2002:
+        	https://engineering.purdue.edu/ME608/webpage/main.pdf
