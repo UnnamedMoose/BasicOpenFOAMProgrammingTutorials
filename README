@@ -10,7 +10,7 @@ It's advisable that you go through these basic C++ tutorials, having tried compi
 and running most of the examples, before continuing:
 http://www.cplusplus.com/doc/tutorial/
 
-Also, it's assumed you're familiar with running and setting up OpenFOAM cases.
+Also, it's assumed you're familiar with running and setting up OpenFOAM® cases.
 If not, it's highly recommended you go through the official tutorials before you
 dive into the programming part:
 https://cfd.direct/openfoam/user-guide/tutorials/
@@ -20,7 +20,7 @@ Contributions from the community are also more than welcome!
 
 
 Disclaimer: this offering is not approved or endorsed by OpenCFD Limited, producer
-and distributor of the OpenFOAM software via www.openfoam.com, and owner of the
+and distributor of the OpenFOAM® software via www.openfoam.com, and owner of the
 OPENFOAM® and OpenCFD® trade marks.
 
 ---------
