@@ -218,10 +218,10 @@ To run:
 
 Recommended reading:
 - Wikipedia is always a good start:  
-https://en.wikipedia.org/wiki/Convection%E2%80%93diffusion_equation
+    https://en.wikipedia.org/wiki/Convection%E2%80%93diffusion_equation
 - Very brief description of the physical and mathematical concepts behind
-	the scalar transport equation by CFD-online:
-https://www.cfd-online.com/Wiki/Generic_scalar_transport_equation
+	the scalar transport equation by CFD-online:  
+    https://www.cfd-online.com/Wiki/Generic_scalar_transport_equation
 - Chapters 3, 4 and especially 5 in "Numerical Methods in Heat, Mass,
-    and Momentum Transfer" by Murthy, J. Y. 2002:
-https://engineering.purdue.edu/ME608/webpage/main.pdf
+    and Momentum Transfer" by Murthy, J. Y. 2002:  
+    https://engineering.purdue.edu/ME608/webpage/main.pdf
