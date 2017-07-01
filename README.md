@@ -36,9 +36,9 @@ message.
 
 To run:
 ```
-    wmake
-    cd testCase
-    ./Allrun
+wmake
+cd testCase
+./Allrun
 ```
 
 ---------
@@ -48,9 +48,9 @@ Shows how to read information from dictionaries and output it into files.
 
 To run:
 ```
-    wmake
-    cd testCase
-    ./Allrun
+wmake
+cd testCase
+./Allrun
 ```
 
 ---------
@@ -61,9 +61,9 @@ interface used to interact with the grid.
 
 To run:
 ```
-    wmake
-    cd testCase
-    ./Allrun
+wmake
+cd testCase
+./Allrun
 ```
 
 ---------
@@ -74,9 +74,9 @@ using built-in operators, as well as calculating field values by hand.
 
 To run:
 ```
-    wmake
-    cd testCase
-    ./Allrun
+wmake
+cd testCase
+./Allrun
 ```
 
 ---------
@@ -90,9 +90,9 @@ is upgraded to work in parallel.
 
 To run:
 ```
-    wmake
-    cd testCase
-    ./Allrun
+wmake
+cd testCase
+./Allrun
 ```
 
 ---------
@@ -106,9 +106,9 @@ all of the baseline functionality.
 
 To run:
 ```
-    wmake
-    cd testCase
-    ./Allrun
+wmake
+cd testCase
+./Allrun
 ```
 
 ---------
@@ -121,9 +121,9 @@ solver code.
 
 To run:
 ```
-    ./Allwmake
-    cd testCase
-    ./Allrun
+./Allwmake
+cd testCase
+./Allrun
 ```
 
 ---------
@@ -150,9 +150,9 @@ layer profile at the inlet and how it affects the solution.
 
 To run:
 ```
-    ./Allwmake
-    cd testCase
-    ./Allrun
+./Allwmake
+cd testCase
+./Allrun
 ```
 
 ---------
@@ -182,9 +182,9 @@ by the utility in the postProcessing directory.
 
 To run:
 ```
-    wmake libso
-    cd testCase
-    ./Allrun
+wmake libso
+cd testCase
+./Allrun
 ```
 
 ---------
