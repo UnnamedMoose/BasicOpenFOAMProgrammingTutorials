@@ -211,9 +211,9 @@ transport equation saved as the "result" field.
 
 To run:
 ```
-    wmake
-    cd testCase
-    ./Allrun
+wmake
+cd testCase
+./Allrun
 ```
 
 Recommended reading:
