@@ -6,7 +6,7 @@ approachable than most of the materials available on-line, which tend to assume
 that the user is proficient in the C++ programming language. Please see below for
 a brief summary of what each individual tutorial covers and how to use it.
 
-## Requirement
+## Requirements
 
 It's advisable that you go through these basic C++ tutorials, having tried compiling
 and running most of the examples, before continuing:
@@ -22,14 +22,14 @@ Contributions from the community are also more than welcome!
 
 Copyright by Artur K. Lidtke, 2017.
 
-# Disclaimer
+## Disclaimer
 
 This offering is not approved or endorsed by OpenCFD Limited, producer
 and distributor of the OpenFOAM® software via www.openfoam.com, and owner of the
 OPENFOAM® and OpenCFD® trade marks.
 
-#---------
-# Tutorial 0 - Hello world
+---------
+## Tutorial 0 - Hello world
 
     Presents a basic OpenFOAM executable which prints a simple, yet important,
     message.
@@ -39,8 +39,8 @@ OPENFOAM® and OpenCFD® trade marks.
         cd testCase
         ./Allrun
 
-#---------
-# Tutorial 1 - Input and output
+---------
+## Tutorial 1 - Input and output
 
     Shows how to read information from dictionaries and output it into files.
 
@@ -51,8 +51,8 @@ OPENFOAM® and OpenCFD® trade marks.
         ./Allrun
     ```
 
-#---------
-# Tutorial 2 - Understanding the mesh
+---------
+## Tutorial 2 - Understanding the mesh
 
     Discusses how the OpenFOAM mesh description works and introduces the code
     interface used to interact with the grid.
@@ -64,8 +64,8 @@ OPENFOAM® and OpenCFD® trade marks.
         ./Allrun
     ```
 
-#---------
-# Tutorial 3 - Basic field operations
+---------
+## Tutorial 3 - Basic field operations
 
     Introduces the idea of a field object, reading values from OF-native files
     using built-in operators, as well as calculating field values by hand.
@@ -77,7 +77,7 @@ OPENFOAM® and OpenCFD® trade marks.
         ./Allrun
     ```
 
-#---------
+---------
 # Tutorial 4 - Basic parallel computing
 
     Gives a crash-course introduction to parallel computing with OpenFOAM and
@@ -93,8 +93,8 @@ OPENFOAM® and OpenCFD® trade marks.
         ./Allrun
     ```
 
-#---------
-# Tutorial 5 - Custom classes
+---------
+## Tutorial 5 - Custom classes
 
     Shows how a new class may be added to expand OpenFOAM functionality, as well
     as gives an example implementation of a class derived from and OpenFOAM
@@ -109,8 +109,8 @@ OPENFOAM® and OpenCFD® trade marks.
         ./Allrun
     ```
 
-#---------
-# Tutorial 6 - Custom libraries
+---------
+## Tutorial 6 - Custom libraries
 
     Shows how an external library may be compiled and added to OpenFOAM. This is
     done by moving the key functionality of the "solver" from Tutorials 2 and 3
@@ -124,8 +124,8 @@ OPENFOAM® and OpenCFD® trade marks.
         ./Allrun
     ```
 
-#---------
-# Tutorial 7 - Custom boundary condition
+---------
+## Tutorial 7 - Custom boundary condition
 
     Shows how a custom boundary condition may be implemented.
     It does not introduce a bespoke utility, but instead only implements a
@@ -153,8 +153,8 @@ OPENFOAM® and OpenCFD® trade marks.
         ./Allrun
     ```
 
-#---------
-# Tutorial 8 - Runtime post processing utility
+---------
+## Tutorial 8 - Runtime post processing utility
 
     Discusses the implementation of a a runtime post-processing utility which
     computes the flow rate through a face zone defined in the mesh using the
@@ -185,8 +185,8 @@ OPENFOAM® and OpenCFD® trade marks.
         ./Allrun
     ```
 
-#---------
-# Tutorial 9 - Transport equation
+---------
+## Tutorial 9 - Transport equation
 
     Introduces the concepts behind solving a simple scalar transport equation.
 
