@@ -29,15 +29,18 @@ and distributor of the OpenFOAM® software via www.openfoam.com, and owner of th
 OPENFOAM® and OpenCFD® trade marks.
 
 ---------
+
 ## Tutorial 0 - Hello world
 
     Presents a basic OpenFOAM executable which prints a simple, yet important,
     message.
 
     To run:
+    ```
         wmake
         cd testCase
         ./Allrun
+    ```
 
 ---------
 ## Tutorial 1 - Input and output
