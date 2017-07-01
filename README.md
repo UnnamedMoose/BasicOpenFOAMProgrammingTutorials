@@ -217,8 +217,8 @@ To run:
 ```
 
 Recommended reading:
-- Wikipedia is always a good start:
-	https://en.wikipedia.org/wiki/Convection%E2%80%93diffusion_equation
+- Wikipedia is always a good start:  
+https://en.wikipedia.org/wiki/Convection%E2%80%93diffusion_equation
 - Very brief description of the physical and mathematical concepts behind
 	the scalar transport equation by CFD-online:
 	https://www.cfd-online.com/Wiki/Generic_scalar_transport_equation
