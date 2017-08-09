@@ -6,6 +6,8 @@ approachable than most of the materials available on-line, which tend to assume
 that the user is proficient in the C++ programming language. Please see below for
 a brief summary of what each individual tutorial covers and how to use it.
 
+The tutorials have been most recently tested on the official OpenFOAM 3.0.1 version.
+
 ## Requirements
 
 It's advisable that you go through these basic C++ tutorials, having tried compiling
