@@ -80,7 +80,7 @@ cd testCase
 ```
 
 ---------
-# Tutorial 4 - Basic parallel computing
+## Tutorial 4 - Basic parallel computing
 
 Gives a crash-course introduction to parallel computing with OpenFOAM and
 OpenMPI based on the example "solver" developed in Tutorial 2. The way
