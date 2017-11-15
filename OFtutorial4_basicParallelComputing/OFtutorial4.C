@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
     // .H files to make the code of the solver itself more readable. This is not
     // a standard C++ practice, as header files are normally associated with
     // declarations rather than definitions.
-    // A very common include, aprat from the setRootCase, createTime, and createMesh,
+    // A very common include, apart from the setRootCase, createTime, and createMesh,
     // which are generic, is createFields, which is often unique for each solver.
     // Here we've moved all of the parts of the code dealing with setting up the fields
     // and transport constants into this include file.
