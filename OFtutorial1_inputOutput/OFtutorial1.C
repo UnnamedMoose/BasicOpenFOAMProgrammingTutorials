@@ -106,6 +106,9 @@ int main(int argc, char *argv[])
     outputFilePtr() << "# This is a header" << endl;
     outputFilePtr() << "0 1 2 3 4 5" << endl;
 
+    // Append to the imported hash table and wirte it too
+    someHashTable.insert("newKey", vector(1., 0., 0.));
+    outputFilePtr() << someHashTable << endl;
 
     Info<< "End\n" << endl;
     return 0;
