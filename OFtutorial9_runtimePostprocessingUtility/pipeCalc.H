@@ -37,13 +37,8 @@ SourceFiles
 #define pipeCalc_H
 
 #include "volFieldsFwd.H"
-#include "surfaceFieldsFwd.H"
-#include "OFstream.H"
 #include "Switch.H"
-#include "volFields.H"
-#include "dictionary.H"
 #include "fvc.H"
-#include "writer.H"
 #include "fvMeshFunctionObject.H"
 #include "logFiles.H"
 #include "addToRunTimeSelectionTable.H"
