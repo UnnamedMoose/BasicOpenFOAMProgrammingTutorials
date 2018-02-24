@@ -1,0 +1,120 @@
+Tutorial 0 - Hello world
+
+    Presents a basic OpenFOAM executable which prints a simple, yet important,
+    message.
+
+    To run:
+        wmake
+        cd testCase
+        ./Allrun
+
+Tutorial 1 - Understanding the mesh
+
+    Discusses how the OpenFOAM mesh description works and introduces the code
+    interface used to interact with the grid.
+
+    To run:
+        wmake
+        cd testCase
+        ./Allrun
+
+Tutorial 2 - Basic field operations
+
+    Introduces the idea of a field object, reading values from OF-native files
+    using built-in operators, as well as calculating field values by hand.
+
+    To run:
+        wmake
+        cd testCase
+        ./Allrun
+
+Tutorial 3 - Basic parallel computing
+
+    Gives a crash-course introduction to parallel computing with OpenFOAM and
+    OpenMPI based on the example "solver" developed in Tutorial 2. The way
+    OpenFOAM handles parallel domain decomposition is described, basic operators
+    used for communication between parallel nodes are shown, and the basic solver
+    is upgraded to work in parallel.
+
+    To run:
+        wmake
+        cd testCase
+        ./Allrun
+
+Tutorial 4 - Custom classes
+
+    Shows how a new class may be added to expand OpenFOAM functionality, as well
+    as gives an example implementation of a class derived from and OpenFOAM
+    object. This is done by extending from the IOdictionary, with the aim of
+    adding a custom method which lists the contents of the dict file, while keeping
+    all of the baseline functionality.
+
+    To run:
+        wmake
+        cd testCase
+        ./Allrun
+
+Tutorial 5 - Custom libraries
+
+    Shows how an external library may be compiled and added to OpenFOAM. This is
+    done by moving the key functionality of the "solver" from Tutorials 2 and 3
+    into an independent library, and then linking that against the rest of the
+    solver code.
+
+    To run:
+        ./Allwmake
+        cd testCase
+        ./Allrun
+
+Tutorial 6 - Custom boundary condition
+
+    Shows how a custom boundary condition may be implemented.
+    It does not introduce a bespoke utility, but instead only implements a
+    library. This defines an inlet condition that allows a boundary layer
+    profile to be prescribed at the inlet of a pipe.
+
+    The BC is implemented as a class derived from the fixedValue boundary
+    condition, adding several control parameters allowing the inlet profile
+    to be customised. Key elements of the code are highlighted with the keyword
+    NOTE:. Key methods to pay attention to are the two constructors, default
+    and one constructing the BC from string, and .updateCoeffs().
+
+    The test case is a straight pipe, flow through which gets solved with the
+    basic simpleFoam solver. Key things to note are the definition of the
+    BC in 0.org/U and the incorporation of a custom library in system/controlDict.
+    The simulation is 3D RANS on a coarse mesh so it takes a few minutes on
+    a low-end machine.
+
+    To run:
+        ./Allwmake
+        cd testCase
+        ./Allrun
+
+Tutorial 7 - Runtime post processing utility
+
+    Discusses the implementation of a a runtime post-processing utility which
+    computes the flow rate through a face zone defined in the mesh using the
+    topoSet utility.
+
+    The utility is implemented as a runtime postprocessing object derived from
+    the built-in functionObjectFile class. It integrates the normal velocity
+    through a specified face zone at each required time step and writes the
+    result to a file, as well as prints in on the screen. The key methods to
+    pay attention to are 1) the constructor 2) writeFileHeader(), as well as
+    3) write(), which implements the actual maths behind the functionality.
+    Key elements of the code are highlighted with the keyword NOTE:. It is
+    important to note that the utility gets compiled as a library, which then
+    gets linked to the main solver, following the OpenFOAM runtime utility
+    convention.
+
+    The test case is the same pipe as in Tutorial 6, except it uses a uniform
+    inflow BC and is not run until full convergence. It is worth to note
+    the definition of the faceZone of interest in system/topoSet. This may be
+    visualised by selecting "Include zones" in apraview and applying the "Extract
+    block" filter. As the simpleFoam solver is run, the output file gets created
+    by the utility in the postProcessing directory.
+
+    To run:
+        wmake libso
+        cd testCase
+        ./Allrun

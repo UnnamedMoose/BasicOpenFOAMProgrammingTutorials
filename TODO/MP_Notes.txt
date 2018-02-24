@@ -1,0 +1,33 @@
+Subject: Re: Feature Request: Krylov Mixed Precision
+Iterative Refinement Solver
+
+Hello Steve,
+
+here is the concept for the implementation of mixed precision for the CG solver:
+
+Basically 99% of the double precision iterations are replaced by single precision iterations in an - inner loop - within the while loop which is the - outer loop -
+
+while...  - outer loop -  (double precision) {
+
+- inner loop -  (single precision) {
+
+In the inner-loop, there are the whole CG process:
+[1] alpha in low precision,
+[2] updates r in low precision,
+[3] updates x in low precision.
+[4] calculated beta in low precision
+[5] update d in low precision
+
+}
+
+If the condition (residual vector is small) is satisfied,
+the process [4] and [5] are replaced by
+the double precision updates of x and r.
+
+}
+
+In order to get the best performance, three features have to be put in place:
+
+1. Recycling of information to improve performance of the next - inner loop - (set starting conditions to: y0 = 0, initial residual vector r0 = rk, initial directional vector d0 = dk)
+2. Implementation of the "reliable update" (error correction) - outer loop -
+3. Implementation of the "group wise update" (error correction) - outer loop -
