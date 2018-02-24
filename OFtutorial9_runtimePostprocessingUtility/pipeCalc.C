@@ -24,47 +24,78 @@ License
 \*---------------------------------------------------------------------------*/
 
 #include "pipeCalc.H"
-
+#include "addToRunTimeSelectionTable.H"
 // * * * * * * * * * * * * * * Static Data Members * * * * * * * * * * * * * //
 
 namespace Foam
 {
-defineTypeNameAndDebug(pipeCalc, 0);
+namespace functionObjects
+{
+    defineTypeNameAndDebug(pipeCalc, 0);
+    addToRunTimeSelectionTable(functionObject, pipeCalc, dictionary);
+}
 }
 
 // * * * * * * * * * * * * * * * * Protected members  * * * * * * * * * * * * * * //
 
-// NOTE: this method first gets declared in functionObjectFile.H, from which this
-// class is derived. This method gets called automatically when the base object
-// function gets called too.
-// The purpose of the function is to add the header to the output data file.
-void Foam::pipeCalc::writeFileHeader(const label i)
+// NOTE: this returns a list of file names which match indices of the enum
+// defined in the header of this class. These names are used to create matching
+// files by the logFiles object.
+Foam::wordList Foam::functionObjects::pipeCalc::createFileNames
+(
+    const dictionary& dict
+) const
 {
-        writeHeader(file(), "Flow rate through face zone");
-        writeHeaderValue(file(), "Face zone name", faceZoneName_);
-        writeCommented(file(), "Time [s] | Flow rate [m3s-1]");
-        file() << endl;
+    DynamicList<word> names(1);
+
+    // use type of the utility as specified in the dict as the top-level dir name
+    const word objectType(dict.lookup("type"));
+
+    // Name for file(MAIN_FILE=0)
+    names.append(objectType);
+
+    return names;
+}
+
+// NOTE: this method first gets declared in logFiles.H, from which this
+// class is derived. This method gets called automatically when the base object's
+// write() function gets called too.
+// The purpose of the function is to add the header to the output data file.
+void Foam::functionObjects::pipeCalc::writeFileHeader(const label i)
+{
+    // Find the correct file to write to from the enum defined in the header.
+    switch (fileID(i))
+    {
+        case MAIN_FILE:
+        {
+            writeHeader(file(i), "Flow rate through face zone");
+            writeHeaderValue(file(i), "Face zone name", faceZoneName_);
+            writeCommented(file(i), "Time [s] | Flow rate [m3s-1]");
+            file() << endl;
+            break; // exit the case structure
+        }
+        default:
+        {
+            FatalErrorInFunction
+                << "Unhandled file index: " << i
+                << abort(FatalError);
+        }
+    }
 }
 
 // * * * * * * * * * * * * * * * * Constructors  * * * * * * * * * * * * * * //
-Foam::pipeCalc::pipeCalc
+Foam::functionObjects::pipeCalc::pipeCalc
 (
     const word& name,
-    const objectRegistry& obr,
-    const dictionary& dict,
-    const bool loadFromFiles
+    const Time& runTime,
+    const dictionary& dict
 )
 :
     // NOTE: call the base class constructor
-    functionObjectFile(obr, name, type()),
+    fvMeshFunctionObject(name, runTime, dict),
+    logFiles(obr_, name),
+
     name_(name),
-    obr_(obr),
-    // NOTE: the instance only gets given a reference to the object registry
-    // automaitcally (this keeps track of what objects, such as fields or
-    // meshes) are registered in the simulation. The following line casts
-    // (converts) the reference to a const fvMesh reference, which allows
-    // the grid to be accessed but not modified.
-    mesh_(refCast<const fvMesh>(obr_)),
     active_(true),
     UName_("U"),
     // NOTE: Read the face zone to integrate over. Get its name from the dict, find
@@ -73,26 +104,12 @@ Foam::pipeCalc::pipeCalc
     faceZoneLabel_( mesh_.faceZones().findZoneID(faceZoneName_) ),
     faces_( mesh_.faceZones()[faceZoneLabel_] )
 {
-    // Check if the available mesh is an fvMesh, otherwise deactivate
-    if (!isA<fvMesh>(obr_))
-    {
-        active_ = false;
-        WarningIn
-        (
-            "pipeCalc::pipeCalc"
-            "("
-                "const word&, "
-                "const objectRegistry&, "
-                "const dictionary&, "
-                "const bool"
-            ")"
-        )   << "No fvMesh available, deactivating " << name_ << nl
-            << endl;
-    }
-
     // NOTE: calls the separate .read() method to import the controls from the dict.
     // dict reference is passed automatically by the OpenFOAM runtime object manager.
     read(dict);
+
+    // built-in logFiles method for creating file streams.
+    resetNames(createFileNames(dict));
 
     if (active_)
     {
@@ -106,40 +123,43 @@ Foam::pipeCalc::pipeCalc
 
 // * * * * * * * * * * * * * * * * Destructor  * * * * * * * * * * * * * * * //
 
-Foam::pipeCalc::~pipeCalc()
+Foam::functionObjects::pipeCalc::~pipeCalc()
 {}
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-void Foam::pipeCalc::read(const dictionary& dict)
+bool Foam::functionObjects::pipeCalc::read(const dictionary& dict)
 {
     if (active_)
     {
         UName_ = dict.lookupOrDefault<word>("UName", "U");
     }
+    return true;
 }
 
-void Foam::pipeCalc::execute()
+bool Foam::functionObjects::pipeCalc::execute()
 {
     if (active_)
     {
         // This gets called before write, should put things on which other
         // function objects might depend on here (for instance field calculations)
     }
+    return true;
 }
 
-void Foam::pipeCalc::end()
+bool Foam::functionObjects::pipeCalc::end()
 {
     if (active_)
     {
         execute();
     }
+    return true;
 }
 
-void Foam::pipeCalc::timeSet()
+void Foam::functionObjects::pipeCalc::timeSet()
 {}
 
-void Foam::pipeCalc::write()
+bool Foam::functionObjects::pipeCalc::write()
 {
     if (active_)
     {
@@ -180,12 +200,13 @@ void Foam::pipeCalc::write()
             // Call the base class method which checks if the output file exists
             // and creates it, if necessary. That also calls the .writeFileHeader()
             // method of the derived class.
-            functionObjectFile::write();
+            logFiles::write();
 
             // Add the entry for this time step that has just been computed.
-            file() << obr_.time().value() << tab << flowRate << endl;
+            file(MAIN_FILE) << obr_.time().value() << tab << flowRate << endl;
         }
     }
+    return true;
 }
 
 // ************************************************************************* //

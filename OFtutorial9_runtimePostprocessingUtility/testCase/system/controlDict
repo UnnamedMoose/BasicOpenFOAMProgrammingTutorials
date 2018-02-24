@@ -56,8 +56,8 @@ pipeCalculator
     faceZoneName planeFaceZone;
     UName U;
 
-    outputControl timeStep;
-    outputInterval 1;
+    writeInterval timeStep;
+    writeInterval 1;
 }
 }
 

@@ -24,16 +24,12 @@ License
 Class
     Foam::pipeCalc
 
-Group
-    grpUtilitiesFunctionObjects
-
 Description
     This function object calculates and outputs various quantities relevant
     to flows through pipes and similar geometries.
 
 SourceFiles
     pipeCalc.C
-    IOpipeCalc.H
 
 \*---------------------------------------------------------------------------*/
 
@@ -47,19 +43,17 @@ SourceFiles
 #include "volFields.H"
 #include "dictionary.H"
 #include "fvc.H"
-#include "functionObjectFile.H"
 #include "writer.H"
+#include "fvMeshFunctionObject.H"
+#include "logFiles.H"
+#include "addToRunTimeSelectionTable.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 namespace Foam
 {
-
-// Forward declaration of classes
-class objectRegistry;
-class dictionary;
-class polyMesh;
-class mapPolyMesh;
+namespace functionObjects
+{
 
 /*---------------------------------------------------------------------------*\
                           Class pipeCalc Declaration
@@ -67,21 +61,16 @@ class mapPolyMesh;
 
 class pipeCalc
 :
-    // NOTE: derive from the base functionObjectFile in order to provide a ready
-    // interface for dealing with output files
-    public functionObjectFile
+    // NOTE: derive from the base fvMeshFunctionObject and logFiles in order to
+    // provide a ready interface for dealing with output files
+    public fvMeshFunctionObject,
+    public logFiles
 {
 private:
     // Private data
 
         //- Name of this set of pipeCalc objects
         word name_;
-
-        //- Reference to the database
-        const objectRegistry& obr_;
-
-        // reference to the mesh
-        const fvMesh& mesh_;
 
         //- On/off switch
         bool active_;
@@ -108,6 +97,16 @@ private:
         void operator=(const pipeCalc&);
 
 protected:
+    // NOTE: define a list of files this object writes to; the underlying logFiles
+    // object will handle output to correct streams automatically.
+    enum fileID
+    {
+        MAIN_FILE = 0
+    };
+
+    // NOTE: Create file names for each of the output files
+    wordList createFileNames(const dictionary& dict) const;
+
     // NOTE: this first gets declared in the baseline object and gets used to
     // write the header in the output file.
     virtual void writeFileHeader(const label i);
@@ -119,14 +118,12 @@ public:
 
     // Constructors
 
-        //- Construct for given objectRegistry and dictionary.
-        //  Allow the possibility to load fields from files
+        //- Construct for given Time and dictionary.
         pipeCalc
         (
             const word& name,
-            const objectRegistry&,
-            const dictionary&,
-            const bool loadFromFiles = false
+            const Time& runTime,
+            const dictionary& dict
         );
 
     //- Destructor
@@ -138,19 +135,19 @@ public:
     virtual const word& name() const { return name_; }
 
     //- Read the pipeCalc data
-    virtual void read(const dictionary&);
+    virtual bool read(const dictionary&);
 
     //- Execute, currently does nothing
-    virtual void execute();
+    virtual bool execute();
 
     //- Execute at the final time-loop, currently does nothing
-    virtual void end();
+    virtual bool end();
 
     //- Called when time was set at the end of the Time::operator++
     virtual void timeSet();
 
-    //- Calculate the pipeCalc and write
-    virtual void write();
+    // NOTE: Key method which implements the object's actual functionality
+    virtual bool write();
 
     //- Update for changes of mesh
     virtual void updateMesh(const mapPolyMesh&) {}
@@ -161,6 +158,7 @@ public:
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+} // End namespace functionObjectFile
 } // End namespace Foam
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
