@@ -1,4 +1,4 @@
 #!/bin/bash
 
 blockMesh > log.blockMesh
-ofTutorial5
+ofTutorial6

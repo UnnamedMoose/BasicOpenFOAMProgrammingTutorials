@@ -1,5 +1,5 @@
 customClass.C
 derivedClass.C
-OFtutorial5.C
+OFtutorial6.C
 
-EXE = $(FOAM_USER_APPBIN)/ofTutorial5
+EXE = $(FOAM_USER_APPBIN)/ofTutorial6
