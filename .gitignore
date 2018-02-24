@@ -79,6 +79,7 @@ doc/Doxygen/DTAGS
 /.cproject
 /.project
 /.dir-locals.el
+/.dropbox
 
 # Ignore the test directory
 /tutorialsTest
