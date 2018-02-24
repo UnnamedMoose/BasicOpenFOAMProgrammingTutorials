@@ -66,13 +66,11 @@ int main(int argc, char *argv[])
     // object-oriented programming in OpenFOAM, so we'll skip this for now.
 
     // Spreading a value across all processors is done using a scatter operation.
-    // The Pstream::blocking makes sure all processors are synchronised at this
-    // line of the code and thus should use the same value.
-    Pstream::scatter(meshVolume, Pstream::blocking);
+    Pstream::scatter(meshVolume);
     Pout << "Mesh volume on this processor is now " << meshVolume << endl;
 
     // It is often useful to check the distribution of something across all
-    // processors. This may be done using a list, with each element of which
+    // processors. This may be done using a list, with each element of it
     // being written to by only one processor.
     List<label> nInternalFaces (Pstream::nProcs()), nBoundaries (Pstream::nProcs());
     nInternalFaces[Pstream::myProcNo()] = mesh.Cf().size();
@@ -129,10 +127,10 @@ int main(int argc, char *argv[])
 
     // pre-calculate geometric information using field expressions rather than
     // cell-by-cell assignment.
-	const dimensionedVector originVector("x0",dimLength,vector(0.05,0.05,0.005));
-    scalarField r (mag(mesh.C()-originVector));
-    // NOTE: we need to get a global value
-	const scalar rFarCell = returnReduce(max(r), maxOp<scalar>());
+	const dimensionedVector originVector("x0", dimLength, vector(0.05,0.05,0.005));
+    volScalarField r (mag(mesh.C()-originVector));
+    // NOTE: we need to get a global value; convert from dimensionedScalar to scalar
+	const scalar rFarCell = returnReduce(max(r).value(), maxOp<scalar>());
     scalar f (1.);
 
 	Info<< "\nStarting time loop\n" << endl;
@@ -141,16 +139,24 @@ int main(int argc, char *argv[])
     {
         Info<< "Time = " << runTime.timeName() << nl << endl;
 
-        // We use .internalField() to assign to the internal values only, thus
-        // leaving boundary values unchanged. Thus, we assign a scalarField
-        // object to the internal scalrField inside the volScalarField p.
-		p.internalField() = Foam::sin(2.*constant::mathematical::pi*f*runTime.time().value())
-            / (r/rFarCell+1e-12);
+        // assign values to the field;
+        // sin function expects a dimensionless argument, hence need to convert
+        // current time using .value().
+        // r has dimensions of length, hence the small value being added to it
+        // needs to match that.
+        // Finally, the result has to match dimensions of pressure, which are
+        // m^2 / s^-2/
+		p = Foam::sin(2.*constant::mathematical::pi*f*runTime.time().value())
+            / (r/rFarCell + dimensionedScalar("small", dimLength, 1e-12))
+            * dimensionedScalar("tmp", dimensionSet(0, 3, -2, 0, 0), 1.);
+
         // NOTE: this is needed to update the values on the processor boundaries.
         // If this is not done, the gradient operator will get confused around the
         // processor patches.
         p.correctBoundaryConditions();
-		U = fvc::grad(p)*dimensionedScalar("tmp",dimTime,1.);
+
+        // calculate velocity from gradient of pressure
+		U = fvc::grad(p)*dimensionedScalar("tmp", dimTime, 1.);
 		runTime.write();
 	}
 
