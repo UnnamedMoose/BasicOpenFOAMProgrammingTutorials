@@ -31,9 +31,6 @@ License
 // The actual implementation, or definition, is below.
 scalar calculatePressure(scalar t, vector x, vector x0, scalar scale);
 
-// Define pi constant
-#define PI_ 3.141592653589793
-
 int main(int argc, char *argv[])
 {
     #include "setRootCase.H"
@@ -181,7 +178,7 @@ scalar calculatePressure(scalar t, vector x, vector x0, scalar scale)
 	// Note how we call the OpenFOAM sin method by referring to the Foam namespace.
 	// This is done to differentiate between the native C++ implementation of a method with the same name
 	// and thus avoid an ambiguous expression.
-	return Foam::sin(2.*PI_*f*t)*rR;
+	return Foam::sin(2.*Foam::constant::mathematical::pi*f*t)*rR;
 }
 
 // ************************************************************************* //
