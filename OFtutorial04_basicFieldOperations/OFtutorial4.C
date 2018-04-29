@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
 
 	// Calculate the distance from the origin to the cell centre furthest away.
 	// In Python, this is equivalent to:
-	// np.sqrt(np.sum(x0-x)**2)
+	// np.sqrt(np.sum((x0-x)**2))
 	// The .value() method is called to convert from a dimensionedScalar to a regular scalar.
 	const scalar rFarCell = max( // find the maximum value from all distances
 		// compute distance of each cell centre from x0; units of mesh.C() are those of length, as this field
