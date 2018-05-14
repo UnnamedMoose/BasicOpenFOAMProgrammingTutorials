@@ -1,0 +1,64 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+application     simpleFoam;
+
+startFrom       latestTime;
+
+startTime       0;
+
+stopAt          endTime;
+
+endTime         10;
+
+deltaT          1;
+
+writeControl    runTime;
+
+writeInterval   50;
+
+purgeWrite      1;
+
+writeFormat     binary;
+
+writePrecision  6;
+
+writeCompression compressed;
+
+timeFormat      general;
+
+timePrecision   6;
+
+runTimeModifiable true;
+
+functions
+{
+// NOTE: this calls the bespoke utility and links it to the main solver
+pipeCalculator
+{
+    functionObjectLibs ("libpipeCalc.so");
+    type pipeCalc;
+
+    faceZoneName planeFaceZone;
+    UName U;
+
+    outputControl timeStep;
+    outputInterval 1;
+}
+}
+
+// ************************************************************************* //
