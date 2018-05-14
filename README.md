@@ -8,7 +8,10 @@ a brief summary of what each individual tutorial covers and how to use it.
 
 The tutorials were originally developed for OpenFOAM 3.0.1 but have been recently
 upgraded to work with OpenFOAM 5.x from the https://openfoam.org/ branch.
-Compatibility with older versions has been dropped.
+The "OldReleases" folder contains versions of the tutorials compatibile with past
+OpenFOAM releases. Complete backwards compatibility with older versions has been
+dropped, however, and hence the older tutorials will be lacking in content
+(they should still all work though!).
 
 ## Requirements
 
