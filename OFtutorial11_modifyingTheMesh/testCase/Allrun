@@ -1,0 +1,4 @@
+#!/bin/bash
+./Allclean
+blockMesh > log.blockMesh
+ofTutorial11
