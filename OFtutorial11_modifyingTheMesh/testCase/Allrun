@@ -2,3 +2,5 @@
 ./Allclean
 blockMesh > log.blockMesh
 ofTutorial11
+checkMesh -constant -allTopology -allGeometry
+paraview --state=viewGrid.pvsm
