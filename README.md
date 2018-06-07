@@ -244,3 +244,19 @@ Recommended reading:
 - Chapters 3, 4 and especially 5 in "Numerical Methods in Heat, Mass,
     and Momentum Transfer" by Murthy, J. Y. 2002:  
     https://engineering.purdue.edu/~scalo/menu/teaching/me608/ME608_Notes_Murthy.pdf
+
+---------
+## Tutorial 11 - Modifying the mesh
+
+Demonstrates how to use points to generate different cell types, patches,
+and export the finished grid to an OpenFOAM case.
+
+To run:
+```
+wmake
+cd testCase
+./Allrun
+```
+
+Also recommended to view the 'meshPoints.pdf' or Gmsh files to get a better
+idea of how the mesh is actually constructed from points.
