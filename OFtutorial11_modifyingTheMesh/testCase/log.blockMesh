@@ -1,0 +1,74 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  5.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : 5.x-197d9d3bf20a
+Exec   : blockMesh
+Date   : Jun 06 2018
+Time   : 16:36:02
+Host   : "unnamedMoose"
+PID    : 10971
+I/O    : uncollated
+Case   : /home/artur/Dropbox/BasicOpenFOAMProgrammingTutorials/OFtutorial11_modifyingTheMesh/testCase
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Deleting polyMesh directory
+    "/home/artur/Dropbox/BasicOpenFOAMProgrammingTutorials/OFtutorial11_modifyingTheMesh/testCase/constant/polyMesh"
+Creating block mesh from
+    "/home/artur/Dropbox/BasicOpenFOAMProgrammingTutorials/OFtutorial11_modifyingTheMesh/testCase/system/blockMeshDict"
+Creating block edges
+No non-planar block faces defined
+Creating topology blocks
+Creating topology patches
+
+Creating block mesh topology
+
+Check topology
+
+	Basic statistics
+		Number of internal faces : 0
+		Number of boundary faces : 6
+		Number of defined boundary faces : 6
+		Number of undefined boundary faces : 0
+	Checking patch -> block consistency
+
+Creating block offsets
+Creating merge list .
+
+Creating polyMesh from blockMesh
+Creating patches
+Creating cells
+Creating points with scale 0.1
+    Block 0 cell size :
+        i : 0.005 .. 0.005
+        j : 0.005 .. 0.005
+        k : 0.01 .. 0.01
+
+
+Writing polyMesh
+----------------
+Mesh Information
+----------------
+  boundingBox: (0 0 0) (0.1 0.1 0.01)
+  nPoints: 882
+  nCells: 400
+  nFaces: 1640
+  nInternalFaces: 760
+----------------
+Patches
+----------------
+  patch 0 (start: 760 size: 20) name: movingWall
+  patch 1 (start: 780 size: 60) name: fixedWalls
+  patch 2 (start: 840 size: 800) name: frontAndBack
+
+End
+
