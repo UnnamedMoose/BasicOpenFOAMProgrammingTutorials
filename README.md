@@ -6,12 +6,16 @@ approachable than most of the materials available on-line, which tend to assume
 that the user is proficient in the C++ programming language. Please see below for
 a brief summary of what each individual tutorial covers and how to use it.
 
-The tutorials were originally developed for OpenFOAM 3.0.1 but have been recently
+The tutorials were originally developed for OpenFOAM 3.0.1 but have since been
 upgraded to work with OpenFOAM 5.x from the https://openfoam.org/ branch.
 The "OldReleases" folder contains versions of the tutorials compatibile with past
-OpenFOAM releases. Complete backwards compatibility with older versions has been
-dropped, however, and hence the older tutorials will be lacking in content
-(they should still all work though!).
+OpenFOAM versions. Complete backwards compatibility has been dropped, however,
+and hence the older tutorials will be lacking in content (they should still all
+work though!).
+
+There is a dedicated post on the CFD-online forum for discussing the tutorials,
+you're welcome to share your views and suggest new developments there:
+https://www.cfd-online.com/Forums/openfoam-community-contributions/188688-openfoam-programming-tutorials-beginners.html
 
 ## Requirements
 
@@ -27,9 +31,9 @@ https://cfd.direct/openfoam/user-guide/tutorials/
 Enjoy and please provide me with feedback to make these tutorials more useful!
 Contributions from the community are also more than welcome! Many thanks to the
 following people for offering their input:
-- Chris Coutinho (cbcoutinho) for spotting errors in README and parallel processing
-    tutorial
+- Chris Coutinho (cbcoutinho) for spotting errors in README and parallel processing tutorial
 - Gerasimos Chourdakis (MakisH) for helping out with cleaning up the tutorial files
+- Germilly Barreto (Germilly) for suggesting a tutorial on command line argument parsing
 
 Copyright by Artur K. Lidtke, 2017-2018.
 
@@ -279,7 +283,10 @@ the cells inside of the constructor which allows easier adjustment of the disk
 parameters and could be developed further to include a dynamic variant. Main
 part of the implementation is located in "customActuationDiskSourceTemplates.C"
 and the cell selection algorithm is implemented in the class constructor inside
-"customActuationDiskSource.C".
+"customActuationDiskSource.C". Key takeaways from the tutorial are how a fvOption
+object is structured and how it may be modified to suit ones needs. It is a bit
+more applied than the previous ones but hopefully will be useful to at least
+a few people.
 
 To run:
 ```
