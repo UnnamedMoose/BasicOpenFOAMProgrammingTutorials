@@ -110,7 +110,7 @@ cd testCase
 ## Tutorial 5 - Basic parallel computing
 
 Gives a crash-course introduction to parallel computing with OpenFOAM and
-OpenMPI based on the example "solver" developed in Tutorial 2. The way
+OpenMPI based on the example "solver" developed in Tutorial 4. The way
 OpenFOAM handles parallel domain decomposition is described, basic operators
 used for communication between parallel nodes are shown, and the basic solver
 is upgraded to work in parallel.
@@ -142,7 +142,7 @@ cd testCase
 ## Tutorial 7 - Custom libraries
 
 Shows how an external library may be compiled and added to OpenFOAM. This is
-done by moving the key functionality of the "solver" from Tutorials 2 and 3
+done by moving the key functionality of the "solver" from Tutorials 4 and 5
 into an independent library, and then linking that against the rest of the
 solver code.
 
@@ -200,7 +200,7 @@ important to note that the utility gets compiled as a library, which then
 gets linked to the main solver, following the OpenFOAM runtime utility
 convention.
 
-The test case is the same pipe as in Tutorial 6, except it uses a uniform
+The test case is the same pipe as in Tutorial 8, except it uses a uniform
 inflow BC and is not run until full convergence. It is worth to note
 the definition of the faceZone of interest in system/topoSet. This may be
 visualised by selecting "Include zones" in paraview and applying the "Extract
