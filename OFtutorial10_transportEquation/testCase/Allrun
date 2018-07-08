@@ -2,3 +2,4 @@
 
 blockMesh > log.blockMesh
 ofTutorial10
+paraview --state=viewData.pvsm

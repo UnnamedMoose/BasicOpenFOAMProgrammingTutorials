@@ -285,3 +285,4 @@ cd testCase
 ```
 
 ![Alt text](OFtutorial12_momentumSource/testCase/Umagnitude.png?raw=true "Tutorial 12 - velocity affected by a momentum source")
+
