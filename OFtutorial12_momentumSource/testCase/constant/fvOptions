@@ -1,7 +1,7 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  5.x                                   |
+|  \\    /   O peration     | Version:  3.0.1                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -9,28 +9,26 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       labelList;
-    note        "nPoints: 12 nCells: 2 nFaces: 11 nInternalFaces: 1";
-    location    "constant/polyMesh";
-    object      owner;
+    class       dictionary;
+    location    "constant";
+    object      fvOptions;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+actuationDisk
+{
+    type customActuationDiskSource;
 
-11
-(
-0
-0
-0
-0
-0
-0
-1
-1
-1
-1
-1
-)
+    upstreamPoint (-1.5 0 0);
+    diskDir (-1.0 0.5 0);
+    diskCentre (0 0 0);
+    D 1;
+    thickness 0.1;
+    Cp 0.386;
+    Ct 0.58;
+
+    fields (U);
+}
 
 
 // ************************************************************************* //

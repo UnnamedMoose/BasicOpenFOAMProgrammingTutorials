@@ -1,7 +1,7 @@
-/*--------------------------------*- C++ -*----------------------------------*\
+/*--------------------------------*- C++ -*----------------------------------* \
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  5.x                                   |
+|  \\    /   O peration     | Version:  2.2.0                                 |
 |   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
@@ -9,28 +9,18 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       polyBoundaryMesh;
-    location    "constant/polyMesh";
-    object      boundary;
+    class       dictionary;
+    object      turbulenceProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-2
-(
-    side0
-    {
-        type            patch;
-        physicalType    patch;
-        nFaces          1;
-        startFace       1;
-    }
-    defaultFaces
-    {
-        type            empty;
-        inGroups        1(empty);
-        nFaces          9;
-        startFace       2;
-    }
-)
+simulationType RAS;
+
+RAS
+{
+	RASModel	kOmegaSST;
+	turbulence      off;
+	printCoeffs     on;
+}
 
 // ************************************************************************* //
