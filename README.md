@@ -25,7 +25,11 @@ dive into the programming part:
 https://cfd.direct/openfoam/user-guide/tutorials/
 
 Enjoy and please provide me with feedback to make these tutorials more useful!
-Contributions from the community are also more than welcome!
+Contributions from the community are also more than welcome! Many thanks to the
+following people for offering their input:
+- Chris Coutinho (cbcoutinho) for spotting errors in README and parallel processing
+    tutorial
+- Gerasimos Chourdakis (MakisH) for helping out with cleaning up the tutorial files
 
 Copyright by Artur K. Lidtke, 2017-2018.
 
@@ -285,4 +289,3 @@ cd testCase
 ```
 
 ![Alt text](OFtutorial12_momentumSource/testCase/Umagnitude.png?raw=true "Tutorial 12 - velocity affected by a momentum source")
-
