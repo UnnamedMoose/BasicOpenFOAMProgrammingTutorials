@@ -245,6 +245,9 @@ Recommended reading:
     and Momentum Transfer" by Murthy, J. Y. 2002:  
     https://engineering.purdue.edu/~scalo/menu/teaching/me608/ME608_Notes_Murthy.pdf
 
+
+![Alt text](OFtutorial10_transportEquation/testCase/2DconvectionDiffusion.png?raw=true "Tutorial 10 - result of 2D convection-diffusion with inlets at left and bottom edges")
+
 ---------
 ## Tutorial 11 - Modifying the mesh
 
@@ -260,3 +263,25 @@ cd testCase
 
 Also recommended to view the 'meshPoints.pdf' or Gmsh files to get a better
 idea of how the mesh is actually constructed from points.
+
+![Alt text](OFtutorial11_modifyingTheMesh/testCase/cellTypes.png?raw=true "Tutorial 11 - different cell topologies")
+
+---------
+## Tutorial 12 - Adding a custom momentum source
+
+Shows a modified version of the actuatorDisk momentum source which does not use
+a cellSet in order to mark cells for applying the source. Instead, it identifies
+the cells inside of the constructor which allows easier adjustment of the disk
+parameters and could be developed further to include a dynamic variant. Main
+part of the implementation is located in "customActuationDiskSourceTemplates.C"
+and the cell selection algorithm is implemented in the class constructor inside
+"customActuationDiskSource.C".
+
+To run:
+```
+wmake
+cd testCase
+./Allrun
+```
+
+![Alt text](OFtutorial12_momentumSource/testCase/Umagnitude.png?raw=true "Tutorial 12 - velocity affected by a momentum source")
