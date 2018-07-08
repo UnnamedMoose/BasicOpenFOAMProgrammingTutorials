@@ -40,12 +40,6 @@ void Foam::fv::customActuationDiskSource::calculateMomentumSource
     // induced velocity coefficient
     scalar a = 1.0 - Cp_/Ct_;
 
-    // put disk direction unit vector on the diagonal of a 3x3 tensor
-    tensor E(Zero);
-    E.xx() = diskDir_.x();
-    E.yy() = diskDir_.y();
-    E.zz() = diskDir_.z();
-
     // find minimum velocity and density upstream of the actuator disk
     vector upU = vector(VGREAT, VGREAT, VGREAT);
     scalar upRho = VGREAT;
@@ -61,11 +55,13 @@ void Foam::fv::customActuationDiskSource::calculateMomentumSource
     upU *= (upU/mag(upU)) & (-1.*diskDir_);
 
     // calculate thrust
+    // Units: [(kg m-3) * m2 * (m s-1) = (kg s-1)]
     scalar T = 2.0*upRho*diskArea()*mag(upU)*a*(1 - a);
 
     // distribute the total force around the disk proportionally to the volume of each cell
     forAll(cells, i)
     {
+        // Units: [m3 * m-3 * (kg s-1) * (-) * (m s-1) = (kg m s-2) = (N)]
         Usource[cells[i]] += ((Vcells[cells[i]]/V()) * T * diskDir_ * mag(upU));
     }
 
