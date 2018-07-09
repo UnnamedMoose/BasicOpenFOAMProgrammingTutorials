@@ -35,6 +35,26 @@ following people for offering their input:
 - Gerasimos Chourdakis (MakisH) for helping out with cleaning up the tutorial files
 - Germilly Barreto (Germilly) for suggesting a tutorial on command line argument parsing
 
+## How to use this resource
+
+There is no set of notes or step-by-step set of instructions to follow in this
+offering of tutorials. Instead, each tutorial is a separate, stand-alone piece
+of code illustrating functionality of OpenFOAM from a programmer's perspective.
+They are, however, organised in an approximately increasing level of complexity
+so for new users it's advisable to make your way from start to finish. More experienced
+users on the other hand may wish to pick up bits and pieces here and there.
+
+Each tutorial consists of code and a simple test case that demonstrates its
+functionality. Most of them can be simply compiled with ```wmake``` and the test
+case executed with ```Allrun``` but the list below explains the detail for each
+particular case.
+
+As there is no written narrative aside from the brief summaries below, all of
+the explanations are given in the form of comments in the code and in the test
+case control files, if necessary. Hence, the easiest way to use the tutorials
+effectively is to open up the source code, read it, use the comments to understand
+it, test it, and then tweak it to your liking.
+
 Copyright by Artur K. Lidtke, 2017-2018.
 
 ## Disclaimer
@@ -252,7 +272,6 @@ Recommended reading:
 - Chapters 3, 4 and especially 5 in "Numerical Methods in Heat, Mass,
     and Momentum Transfer" by Murthy, J. Y. 2002:  
     https://engineering.purdue.edu/~scalo/menu/teaching/me608/ME608_Notes_Murthy.pdf
-
 
 ![Alt text](OFtutorial10_transportEquation/testCase/2DconvectionDiffusion.png?raw=true "Tutorial 10 - result of 2D convection-diffusion with inlets at left and bottom edges")
 
