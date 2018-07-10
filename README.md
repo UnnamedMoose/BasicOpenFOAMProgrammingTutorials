@@ -10,9 +10,11 @@ Current version of the tutorials is compatibile with the following OpenFOAM vers
 from the https://openfoam.org/ branch:
 - OpenFOAM 5.x
 - OpenFOAM 6 version 6
+
 The "OldReleases" folder contains versions of the tutorials compatibile with past
 OpenFOAM versions, namely:
 - OpenFOAM 3.0.1
+
 Complete backwards compatibility has been dropped, however,
 and hence the older tutorials will be lacking in content (they should still all
 work though!).
