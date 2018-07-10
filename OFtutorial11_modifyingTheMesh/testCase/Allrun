@@ -3,4 +3,4 @@
 blockMesh > log.blockMesh
 ofTutorial11
 checkMesh -constant -allTopology -allGeometry
-paraview --state=viewGrid.pvsm
+echo "Now run: paraview --state=viewGrid.pvsm"

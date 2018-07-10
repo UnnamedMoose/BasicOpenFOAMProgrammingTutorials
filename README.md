@@ -6,10 +6,14 @@ approachable than most of the materials available on-line, which tend to assume
 that the user is proficient in the C++ programming language. Please see below for
 a brief summary of what each individual tutorial covers and how to use it.
 
-The tutorials were originally developed for OpenFOAM 3.0.1 but have since been
-upgraded to work with OpenFOAM 5.x from the https://openfoam.org/ branch.
+Current version of the tutorials is compatibile with the following OpenFOAM versions
+from the https://openfoam.org/ branch:
+- OpenFOAM 5.x
+- OpenFOAM 6 version 6
 The "OldReleases" folder contains versions of the tutorials compatibile with past
-OpenFOAM versions. Complete backwards compatibility has been dropped, however,
+OpenFOAM versions, namely:
+- OpenFOAM 3.0.1
+Complete backwards compatibility has been dropped, however,
 and hence the older tutorials will be lacking in content (they should still all
 work though!).
 
@@ -42,12 +46,25 @@ offering of tutorials. Instead, each tutorial is a separate, stand-alone piece
 of code illustrating functionality of OpenFOAM from a programmer's perspective.
 They are, however, organised in an approximately increasing level of complexity
 so for new users it's advisable to make your way from start to finish. More experienced
-users on the other hand may wish to pick up bits and pieces here and there.
+users, on the other hand, may wish to pick up bits and pieces here and there.
 
 Each tutorial consists of code and a simple test case that demonstrates its
-functionality. Most of them can be simply compiled with ```wmake``` and the test
-case executed with ```Allrun``` but the list below explains the detail for each
-particular case.
+functionality. Most of the tutorials can be simply compiled with ```wmake``` and
+the test case executed with ```Allrun```. Deviations from this occur when compiling
+libraries and hence compilation and clean-up ```Allwmake``` and ```Allwclean```
+scripts are contained in each tutorial directory to make their structure identical.
+Therefore, to run each tutorial simply execute the following from its top-level
+directory:
+
+```
+./Allwmake
+cd testCase
+./Allrun
+```
+
+There is also a ```testAll``` scripts that sequentially builds and tests each of
+the tutorials while supressing all screen output. This is useful mostly for
+checking version compatibility.
 
 As there is no written narrative aside from the brief summaries below, all of
 the explanations are given in the form of comments in the code and in the test
@@ -69,36 +86,15 @@ OPENFOAM® and OpenCFD® trade marks.
 Presents a basic OpenFOAM executable which prints a simple, yet important,
 message.
 
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
-
 ---------
 ## Tutorial 1 - Input and output
 
 Shows how to read information from dictionaries and output it into files.
 
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
-
 ---------
 ## Tutorial 2 - Command line arguments
 
 Shows how to pass arguments and options to custom applications.
-
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
 
 ---------
 ## Tutorial 3 - Understanding the mesh
@@ -106,25 +102,11 @@ cd testCase
 Discusses how the OpenFOAM mesh description works and introduces the code
 interface used to interact with the grid.
 
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
-
 ---------
 ## Tutorial 4 - Basic field operations
 
 Introduces the idea of a field object, reading values from OF-native files
 using built-in operators, as well as calculating field values by hand.
-
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
 
 ---------
 ## Tutorial 5 - Basic parallel computing
@@ -135,13 +117,6 @@ OpenFOAM handles parallel domain decomposition is described, basic operators
 used for communication between parallel nodes are shown, and the basic solver
 is upgraded to work in parallel.
 
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
-
 ---------
 ## Tutorial 6 - Custom classes
 
@@ -151,13 +126,6 @@ object. This is done by extending from the IOdictionary, with the aim of
 adding a custom method which lists the contents of the dict file, while keeping
 all of the baseline functionality.
 
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
-
 ---------
 ## Tutorial 7 - Custom libraries
 
@@ -165,13 +133,6 @@ Shows how an external library may be compiled and added to OpenFOAM. This is
 done by moving the key functionality of the "solver" from Tutorials 4 and 5
 into an independent library, and then linking that against the rest of the
 solver code.
-
-To run:
-```
-./Allwmake
-cd testCase
-./Allrun
-```
 
 ---------
 ## Tutorial 8 - Custom boundary condition
@@ -194,13 +155,6 @@ The simulation is 3D RANS on a coarse mesh so it takes a few minutes on
 a low-end machine. The effect of the boundary condition may be visualised
 by plotting the x-velocity through the pipe and noting the incident boundary
 layer profile at the inlet and how it affects the solution.
-
-To run:
-```
-./Allwmake
-cd testCase
-./Allrun
-```
 
 ---------
 ## Tutorial 9 - Runtime post processing utility
@@ -227,13 +181,6 @@ visualised by selecting "Include zones" in paraview and applying the "Extract
 block" filter. As the simpleFoam solver is run, the output file gets created
 by the utility in the postProcessing directory.
 
-To run:
-```
-wmake libso
-cd testCase
-./Allrun
-```
-
 ---------
 ## Tutorial 10 - Transport equation
 
@@ -256,13 +203,6 @@ field convecting away from the beta inlets. Once the case is run, it is best
 to visualise the initial conditions in the "beta" field and the solution to the
 transport equation saved as the "result" field.
 
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
-
 Recommended reading:
 - Wikipedia is always a good start:  
     https://en.wikipedia.org/wiki/Convection%E2%80%93diffusion_equation
@@ -280,13 +220,6 @@ Recommended reading:
 
 Demonstrates how to use points to generate different cell types, patches,
 and export the finished grid to an OpenFOAM case.
-
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
 
 Also recommended to view the 'meshPoints.pdf' or Gmsh files to get a better
 idea of how the mesh is actually constructed from points.
@@ -306,12 +239,5 @@ and the cell selection algorithm is implemented in the class constructor inside
 object is structured and how it may be modified to suit ones needs. It is a bit
 more applied than the previous ones but hopefully will be useful to at least
 a few people.
-
-To run:
-```
-wmake
-cd testCase
-./Allrun
-```
 
 ![Alt text](OFtutorial12_momentumSource/testCase/Umagnitude.png?raw=true "Tutorial 12 - velocity affected by a momentum source")

@@ -2,4 +2,4 @@
 
 blockMesh > log.blockMesh
 simpleFoam
-paraview --state=viewData.pvsm
+echo "Now run: paraview --state=viewData.pvsm"

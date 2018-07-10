@@ -2,4 +2,4 @@
 
 blockMesh > log.blockMesh
 ofTutorial10
-paraview --state=viewData.pvsm
+echo "Now run: paraview --state=viewData.pvsm"
