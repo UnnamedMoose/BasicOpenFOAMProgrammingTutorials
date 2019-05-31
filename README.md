@@ -161,7 +161,7 @@ layer profile at the inlet and how it affects the solution.
 ---------
 ## Tutorial 9 - Runtime post processing utility
 
-Discusses the implementation of a a runtime post-processing utility which
+Discusses the implementation of a runtime post-processing utility which
 computes the flow rate through a face zone defined in the mesh using the
 topoSet utility.
 
