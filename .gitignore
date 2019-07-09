@@ -81,5 +81,6 @@ doc/Doxygen/DTAGS
 /.dir-locals.el
 /.dropbox
 
-# Ignore the test directory
+# Ignore the test directory and unpublished files
 /tutorialsTest
+/TODO

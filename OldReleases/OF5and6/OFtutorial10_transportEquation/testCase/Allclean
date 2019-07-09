@@ -1,0 +1,2 @@
+#!/bin/bash
+rm 0/result* constant/polyMesh/* log.* 2>/dev/null

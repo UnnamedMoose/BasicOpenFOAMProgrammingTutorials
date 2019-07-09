@@ -1,0 +1,24 @@
+#!/bin/bash
+
+./Allrun.mesh > log.mesh 2>&1
+
+cp -r 0.org 0
+
+potentialFoam > log.potentialFoam 2>&1
+
+decomposePar > log.decomposePar 2>&1
+
+echo "Finished preparing, running the solver."
+
+mpirun -np 4 simpleFoam -parallel > log.run 2>&1
+
+reconstructPar -latestTime > log.reconstruct 2>&1
+
+simpleFoam -postProcess -func yPlus -latestTime > log.yPlus
+simpleFoam -postProcess -func sample -latestTime > log.sample
+
+rm -r processor*
+
+echo "Done."
+
+# ----------------------------------------------------------------- end-of-file

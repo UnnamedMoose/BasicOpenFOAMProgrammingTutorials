@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# read values from the dictionary
+controlFile="system/runConditions"
+Lpipe=$(awk '/Lpipe/{print $2}' $controlFile | sed 's/;$//')
+Rpipe=$(awk '/Rpipe/{print $2}' $controlFile | sed 's/;$//')
+Nx=$(awk '/Nx/{print $2}' $controlFile | sed 's/;$//')
+NRinner=$(awk '/NRinner/{print $2}' $controlFile | sed 's/;$//')
+NRouter=$(awk '/NRouter/{print $2}' $controlFile | sed 's/;$//')
+expRatWall=$(awk '/expRatWall/{print $2}' $controlFile | sed 's/;$//')
+noQuarters=$(awk '/noQuarters/{print $2}' $controlFile | sed 's/;$//')
+
+# update values in the blockMesh dictionary (optionally could also include the file in the dict
+# and use the variables directly - nice to explore different options to do the same thing though)
+sed -i "s/Nx.*;/Nx   $Nx;/g" system/blockMeshDict
+sed -i "s/NRinner.*;/NRinner   $NRinner;/g" system/blockMeshDict
+sed -i "s/NRouter.*;/NRouter   $NRouter;/g" system/blockMeshDict
+sed -i "s/expRatWall.*;/expRatWall   $expRatWall;/g" system/blockMeshDict
+
+# create the baseline mesh of a 1/4 of pipe with unit length and radius
+blockMesh
+
+# scale to give the mesh the desired size
+transformPoints -scale "($Lpipe $Rpipe $Rpipe)"
+
+# mirror the grid as required
+sed -i "s/normalVector.*;/normalVector (0 1 0);/g" system/mirrorMeshDict
+
+if (( $noQuarters == 2 ))
+then
+	mirrorMesh -overwrite
+fi
+
+if (( $noQuarters == 4 ))
+then
+	mirrorMesh -overwrite
+	sed -i "s/normalVector.*;/normalVector (0 0 1);/g" system/mirrorMeshDict
+	mirrorMesh -overwrite
+fi
+
+# renumber to optimise parallel running
+renumberMesh -overwrite
+
+# ----------------------------------------------------------------- end-of-file

@@ -232,7 +232,7 @@ int main(int argc, char *argv[])
             runTime.constant(),
             runTime
         ),
-        xferMove(points),
+        clone(points),
         cells,
         patchFaces,
         boundaryPatchNames,

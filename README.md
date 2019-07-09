@@ -8,12 +8,13 @@ a brief summary of what each individual tutorial covers and how to use it.
 
 Current version of the tutorials is compatibile with the following OpenFOAM versions
 from the https://openfoam.org/ branch:
-- OpenFOAM 5.x
-- OpenFOAM 6 version 6
+- OpenFOAM 7 version 7
 
 The "OldReleases" folder contains versions of the tutorials compatibile with past
 OpenFOAM versions, namely:
 - OpenFOAM 3.0.1
+- OpenFOAM 5.x
+- OpenFOAM 6 version 6
 
 Complete backwards compatibility has been dropped, however,
 and hence the older tutorials will be lacking in content (they should still all
@@ -64,7 +65,7 @@ cd testCase
 ./Allrun
 ```
 
-There is also a ```testAll``` scripts that sequentially builds and tests each of
+There is also a ```testAll``` script that sequentially builds and tests each of
 the tutorials while supressing all screen output. This is useful mostly for
 checking version compatibility.
 

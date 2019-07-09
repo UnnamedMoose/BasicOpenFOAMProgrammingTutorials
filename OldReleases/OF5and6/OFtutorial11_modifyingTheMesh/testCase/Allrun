@@ -1,0 +1,6 @@
+#!/bin/bash
+./Allclean
+blockMesh > log.blockMesh
+ofTutorial11
+checkMesh -constant -allTopology -allGeometry
+echo "Now run: paraview --state=viewGrid.pvsm"

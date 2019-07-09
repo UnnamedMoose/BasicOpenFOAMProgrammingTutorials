@@ -24,6 +24,7 @@ for tutorialDir in */ ; do
 
         # navigate to the tutorial
         cd $tutorialDir
+
         # no need to test cleaning the code
         ./Allwclean >/dev/null 2>&1
 

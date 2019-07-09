@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ofTutorial2 someWordIPassed 5. -someSwitch -someInt 2 -dict path_to_nowhere_in_particular

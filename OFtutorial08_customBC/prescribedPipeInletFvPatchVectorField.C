@@ -128,23 +128,23 @@ Foam::prescribedPipeInletFvPatchVectorField::prescribedPipeInletFvPatchVectorFie
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
-void Foam::prescribedPipeInletFvPatchVectorField::autoMap
-(
-    const fvPatchFieldMapper& m
-)
-{
-    vectorField::autoMap(m);
-}
-
-
-void Foam::prescribedPipeInletFvPatchVectorField::rmap
-(
-    const fvPatchVectorField& ptf,
-    const labelList& addr
-)
-{
-    fixedValueFvPatchVectorField::rmap(ptf, addr);
-}
+// void Foam::prescribedPipeInletFvPatchVectorField::autoMap
+// (
+//     const fvPatchFieldMapper& m
+// )
+// {
+//     vectorField::autoMap(m);
+// }
+//
+//
+// void Foam::prescribedPipeInletFvPatchVectorField::rmap
+// (
+//     const fvPatchVectorField& ptf,
+//     const labelList& addr
+// )
+// {
+//     fixedValueFvPatchVectorField::rmap(ptf, addr);
+// }
 
 // NOTE: this is the key method which implements the actual maths for calculating
 // the inlet profiles.
@@ -213,7 +213,7 @@ void Foam::prescribedPipeInletFvPatchVectorField::write(Ostream& os) const
     os.writeKeyword("centrepoint") << centrepoint_ << token::END_STATEMENT << nl;
     os.writeKeyword("R") << R_ << token::END_STATEMENT << nl;
     os.writeKeyword("lambda") << lambda_ << token::END_STATEMENT << nl;
-    writeEntry("value", os);
+    writeEntry(os, "value", *this);
 }
 
 
