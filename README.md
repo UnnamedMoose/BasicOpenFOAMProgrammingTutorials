@@ -24,7 +24,7 @@ There is a dedicated post on the CFD-online forum for discussing the tutorials,
 you're welcome to share your views and suggest new developments there:
 https://www.cfd-online.com/Forums/openfoam-community-contributions/188688-openfoam-programming-tutorials-beginners.html
 
-## Requirements
+## Requirements:-
 
 It's advisable that you go through these basic C++ tutorials, having tried compiling
 and running most of the examples, before continuing:
