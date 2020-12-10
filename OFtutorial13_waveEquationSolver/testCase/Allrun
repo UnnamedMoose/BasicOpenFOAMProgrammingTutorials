@@ -3,6 +3,6 @@ echo "Creating blockMesh.."
 blockMesh > log.blockMesh
 echo "Running setFields to initial amplitude field values.."
 setFields > log.setFields
-echo "Running waveFoam.."
-waveFoam > log.waveFoam
+echo "Running solver.."
+ofTutorial13
 echo "Done."

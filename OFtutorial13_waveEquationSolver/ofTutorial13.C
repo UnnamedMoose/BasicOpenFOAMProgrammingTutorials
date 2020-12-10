@@ -31,18 +31,17 @@ int main(int argc, char *argv[])
 
     // additional message that will be displayed in the help options
     // i.e. when running "waveFoam -help"
-    argList::addNote
-        (
-         "this application solves the wave equation over given mesh"
-        );
+    argList::addNote(
+     "this application solves the wave equation over given mesh"
+    );
 
 	// Set up the case, parse command line options and create the grid
-#include "setRootCase.H"
-#include "createTime.H"
-#include "createMesh.H"
+	#include "setRootCase.H"
+	#include "createTime.H"
+	#include "createMesh.H"
 
     // reading amplitude field "h" data and wave speed "C"
-#include "createFields.H"
+	#include "createFields.H"
 
     // starting time loop
     Info << nl << "Starting time loop..." << endl;
@@ -73,7 +72,7 @@ int main(int argc, char *argv[])
 
         // printing execution time information i.e. how much physical time it
         // took to solve the equation
-        runTime.printExecutionTime(Info);
+        Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s" << endl;
     }
 
     Info << nl << "End." << endl;
