@@ -267,6 +267,4 @@ and destructive interference also can be clearly seen. Geometry/mesh is a 1X1X0.
 box with single cell thick, and with "empty" BC on top and bottom faces. The video
 file "output.mp4" is the simulation output generated as an animation.
 
-![Alt text](OFtutorial13_waveEquationSolver/testCase/waveElevation_t_0.png?raw=true "Tutorial 13 - initial water height")
-![Alt text](OFtutorial13_waveEquationSolver/testCase/waveElevation_t_43.png?raw=true "Tutorial 13 - water height after some time")
-
+![Alt text](OFtutorial13_waveEquationSolver/testCase/waveElevation.png?raw=true "Tutorial 13 - wave elevation")
