@@ -9,6 +9,7 @@ a brief summary of what each individual tutorial covers and how to use it.
 Current version of the tutorials is compatibile with the following OpenFOAM versions
 from the https://openfoam.org/ branch:
 - OpenFOAM 7 version 7
+- OpenFOAM 8
 
 The "OldReleases" folder contains versions of the tutorials compatibile with past
 OpenFOAM versions, namely:
@@ -41,6 +42,7 @@ following people for offering their input:
 - Chris Coutinho (cbcoutinho) for spotting errors in README and parallel processing tutorial
 - Gerasimos Chourdakis (MakisH) for helping out with cleaning up the tutorial files
 - Germilly Barreto (Germilly) for suggesting a tutorial on command line argument parsing
+- Kumar Ram (Ramkumar47) for contributing a new tutoral
 
 ## How to use this resource
 
