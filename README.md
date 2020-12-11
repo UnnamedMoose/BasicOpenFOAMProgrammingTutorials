@@ -42,7 +42,7 @@ following people for offering their input:
 - Chris Coutinho (cbcoutinho) for spotting errors in README and parallel processing tutorial
 - Gerasimos Chourdakis (MakisH) for helping out with cleaning up the tutorial files
 - Germilly Barreto (Germilly) for suggesting a tutorial on command line argument parsing
-- Kumar Ram (Ramkumar47) for contributing a new tutoral on waves (no. 13)
+- Ramkumar (Ramkumar47) for contributing a new tutoral on waves (no. 13)
 
 ## How to use this resource
 
@@ -250,7 +250,7 @@ a few people.
 ---------
 ## Tutorial 13 - Waves
 
-Contributed by: Kumar Ram
+Contributed by: Ramkumar
 
 This tutorial presents a basic solver that solves the wave equation. The main
 motivation for this tutorial is to induce a very basic idea on how to solve custom
