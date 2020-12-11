@@ -9,6 +9,7 @@ a brief summary of what each individual tutorial covers and how to use it.
 Current version of the tutorials is compatibile with the following OpenFOAM versions
 from the https://openfoam.org/ branch:
 - OpenFOAM 7 version 7
+- OpenFOAM 8
 
 The "OldReleases" folder contains versions of the tutorials compatibile with past
 OpenFOAM versions, namely:
@@ -41,6 +42,7 @@ following people for offering their input:
 - Chris Coutinho (cbcoutinho) for spotting errors in README and parallel processing tutorial
 - Gerasimos Chourdakis (MakisH) for helping out with cleaning up the tutorial files
 - Germilly Barreto (Germilly) for suggesting a tutorial on command line argument parsing
+- Ramkumar (Ramkumar47) for contributing a new tutoral on waves (no. 13)
 
 ## How to use this resource
 
@@ -244,3 +246,25 @@ more applied than the previous ones but hopefully will be useful to at least
 a few people.
 
 ![Alt text](OFtutorial12_momentumSource/testCase/Umagnitude.png?raw=true "Tutorial 12 - velocity affected by a momentum source")
+
+---------
+## Tutorial 13 - Waves
+
+Contributed by: Ramkumar
+
+This tutorial presents a basic solver that solves the wave equation. The main
+motivation for this tutorial is to induce a very basic idea on how to solve custom
+equations using OpenFOAM C++. The tutorial "OFtutorial10\_transportEquation" gives
+an idea on solving a transport equation on an already solved velocity field. Hence
+the equation is solved only once. Whereas in here, the wave equation is solved in
+transient form. This solver needs a new field named "h", which is the amplitude of
+the wave in the domain.
+
+The test case is a simple 2D wave simulation with initial condition where a single
+peak amplitude region was placed at center of 2d plane. The simulation computes
+how the waves propagate and induce new waves through reflection, their constructive
+and destructive interference also can be clearly seen. Geometry/mesh is a 1X1X0.01
+box with single cell thick, and with "empty" BC on top and bottom faces. The video
+file "output.mp4" is the simulation output generated as an animation.
+
+![Alt text](OFtutorial13_waveEquationSolver/testCase/waveElevation.png?raw=true "Tutorial 13 - wave elevation")
