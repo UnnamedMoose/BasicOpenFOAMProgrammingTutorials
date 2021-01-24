@@ -268,3 +268,26 @@ box with single cell thick, and with "empty" BC on top and bottom faces. The vid
 file "output.mp4" is the simulation output generated as an animation.
 
 ![Alt text](OFtutorial13_waveEquationSolver/testCase/waveElevation.png?raw=true "Tutorial 13 - wave elevation")
+
+---------
+## Tutorial 14 - The SIMPLE Algorithm
+
+Contributed by: Ramkumar
+
+This tutorial shows how the matrix operations are performed in order to solve
+the governing flow equations using the SIMPLE algorithm. 
+It is worth noting that the code is intended to show only how the equations are solved.
+Hence, the optimization and convergence check conditions are omitted to make the
+code simpler to understand.
+
+The test case used solves a 2D channel flow.
+
+The following are prerequisites that are required for understanding this
+tutorial:
+- CFD Online wiki entry:
+    https://www.cfd-online.com/Wiki/SIMPLE_algorithm
+- This Youtube video uses the same matrix notation as what is in the code:
+    https://www.youtube.com/watch?v=ahdW5TKacok
+
+
+
