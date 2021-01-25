@@ -289,5 +289,6 @@ tutorial:
 - This Youtube video uses the same matrix notation as what is in the code:
     https://www.youtube.com/watch?v=ahdW5TKacok
 
+![Alt text](OFtutorial14_SIMPLE_algorithm/testCase/velocity_field.png?raw=true "Tutorial 14 - channel flow velocity distribution")
 
 
