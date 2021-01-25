@@ -36,18 +36,6 @@ Description
     Equations". it is one of the algorithms used in solving incompressible
     Navier-Stokes equations.
 
-    this tutorial requires the following prerequisite
-    1) basic knowledge in computational fluid dynamics, specifically to
-        incompressible flow solutions.
-    2) basic knowledge in Finite Volume Methods in discretizing partial
-        differential equations.
-    3) it is HIGHLY RECOMMENDED to go through this video on youtube
-
-        https://www.youtube.com/watch?v=ahdW5TKacok
-
-        it explains about Matrix notations/operations and the same is
-        used in this tutorial.
-
 \*---------------------------------------------------------------------------*/
 
 // including basic functions and objects needed for OpenFOAM to run
@@ -55,15 +43,12 @@ Description
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// incompressible flows are governed by 4 PDEs, 3 momentum equations and 1
+// Incompressible flows are governed by 4 PDEs, 3 momentum equations and 1
 // continuity equation. The field variables involved in computation are also
 // 4, Ux,Uy,Uz and P. So we have 4 equations and 4 unknowns, but we dont have
 // an explicit equation for pressure P, hence the continuity equation is
-// modified to involve pressure and thus solved it as pressure correction
-// equation. the details of derivation and matrix notations are explained well
-// on the youtube video just shared above.
-
-// main function declaration
+// modified to involve pressure and thus solved as a pressure correction
+// equation.
 
 int main(int argc, char *argv[])
 {
@@ -72,7 +57,6 @@ int main(int argc, char *argv[])
     #include "createTime.H"
     #include "createMesh.H"
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
     // declaring, reading and defining field values
     // the details on how the fields are defined/read/created can be seen
     // on the "createFields.H" file in the same directory
@@ -98,79 +82,76 @@ int main(int argc, char *argv[])
     Info << tab << "index of cell containing reference pressure \"pRefCell\" : " << pRefCell << endl;
     Info << tab << "reference pressure value \"pRefValue\" : " << pRefValue << endl;
 
-    // begining loop
-    // the start and end times are read from the controlDict file in the
+    // Begin the outer loops.
+    // The start and end iterations are read from the controlDict file in the
     // system directory. Since this is a steadyState solver, the timeStep
     // value are just used as iteration count, hence it is usually started on
-    // a round number, it can be checked on the controlDict file of case directory
+    // a round number.
     while (runTime.loop())
     {
 
         Info << nl << "Iteration: " << runTime.timeName() << endl;
 
-        // defining momentum equation
-        // the momentum equation is defined in the format as
+        // Define the momentum equations as:
         // <convection term> - <diffusion term> == - <pressure gradient>
+        // Body forces, turbulence and the unsteady term are neglected (low
+        // Reynolds number assumption, steady-state solution).
         fvVectorMatrix UEqn
         (
             fvm::div(phi,U) - fvm::laplacian(nu,U) == -fvc::grad(p)
         );
 
-        // solving momentum equation
+        // Solve momentum equation for the current values of pressure.
         UEqn.solve();
 
-        // as can be seen from the youtube video, the matrix form of momentum
-        // equation is M*U = Nab(P). And it is writen in the form of
-        // A*U - H = Nab(P) for ease of inversion. Please see the video for
-        // clear understanding. Those A and H matrices are received as field
-        // values as shown below. Nab - stands for nabla operator
+        // The matrix form of momentum equation is M*U = Nab(P). And it is writen
+        // in the form of A*U - H = Nab(P) for ease of inversion. Those A and H
+        // matrices are received as field values as shown below. Nab stands for
+        // the nabla operator.
 
-        // getting A and H matrices as field values
+        // Getting A and H matrices as fields.
         volScalarField A = UEqn.A();
         volVectorField H = UEqn.H();
 
-        // computing inverse of A matrix for ease of calculation; it is easy
-        // as the A is a diagonal matrix.
+        // Computing inverse of A matrix for ease of calculation; it is easy
+        // as A is a diagonal matrix.
         volScalarField A_inv = 1.0/A;
-        // and interpolating it to surface field. this is done for the way
-        // the laplacian operator works on OpenFOAM.
+        // Interpolating it onto grid faces. This is done becayuse of how
+        // the laplacian operator works in OpenFOAM.
         surfaceScalarField A_inv_flux = fvc::interpolate(A_inv);
-        // and computing HbyA field = H/A for ease of calculation
+        // Computing HbyA field = H/A for ease of calculation
         volVectorField HbyA = A_inv * H;
 
-        // framing pressure correction equation
-        // this equation can be seen on the reference youtube video as
+        // Forming the pressure correction equation:
         // Nab(A^-1 Nab(p)) = Nab.(A^-1 * H)
-        // the LHS can be defined using laplacian operator in OpenFOAM as below
+        // The LHS can be defined using the laplacian operator in OpenFOAM as:
         fvScalarMatrix pEqn
         (
             fvm::laplacian(A_inv_flux, p) == fvc::div(HbyA)
         );
 
-        // setting reference pressure for equation
-        pEqn.setReference(pRefCell,pRefValue);
+        // Setting reference pressure for the equation.
+        pEqn.setReference(pRefCell, pRefValue);
 
-        // solving pressure equation
+        // Solving the pressure correction equation.
         pEqn.solve();
 
-        // under-relaxing pressure equation
-        // two methods of relaxation was shown in the video, in that, the 2nd
-        // one is implemented in here as to make things look simple
-        p = alpha*p + (1 - alpha)*p_old;
+        // Under-relaxing the pressure equation using explicit relaxation:
+        p = alpha*p + (1.0 - alpha)*p_old;
 
-        // updating velocity field with newly computed pressure field
+        // Updating the velocity field with newly computed pressure field.
         U = A_inv * H - A_inv * fvc::grad(p);
-        // updating flux field with newly updated velocity field
+        // Updating the flux field with newly updated velocity field.
         phi = fvc::interpolate(U) & mesh.Sf();
 
-        // updating boundary conditions for both p and U fields
+        // Updating boundary conditions for both p and U fields.
         U.correctBoundaryConditions();
         p.correctBoundaryConditions();
 
-        // updating old_pressure field with new values
+        // Updating old_pressure field with new values
         p_old = p;
 
-        // writing computed fields at the intervals insisted by controlDict
+        // Writing computed fields at the intervals insisted by controlDict.
         runTime.write();
 
     }
@@ -178,7 +159,6 @@ int main(int argc, char *argv[])
     // printing execution time information at the end of simulation
     Info<< nl;
     Info<< "ExecutionTime = " << runTime.elapsedCpuTime() << " s" << endl;
-
     Info<< "End\n" << endl;
 
     return 0;

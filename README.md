@@ -280,14 +280,17 @@ It is worth noting that the code is intended to show only how the equations are 
 Hence, the optimization and convergence check conditions are omitted to make the
 code simpler to understand.
 
-The test case used solves a 2D channel flow.
+The test case used solves a 2D channel flow. You can visualise the results
+using the existing Paraview state file by running: ```paraview --state=viewData.pvsm```.
 
 The following are prerequisites that are required for understanding this
 tutorial:
-- CFD Online wiki entry:
+- CFD Online wiki entry (very brief and little detail, but succinct):
     https://www.cfd-online.com/Wiki/SIMPLE_algorithm
 - This Youtube video uses the same matrix notation as what is in the code:
     https://www.youtube.com/watch?v=ahdW5TKacok
+- A rather detailed yet concise notes:
+    https://quickersim.com/tutorial/tutorial-2-numerics-simple-scheme
 
 ![Alt text](OFtutorial14_SIMPLE_algorithm/testCase/velocity_field.png?raw=true "Tutorial 14 - channel flow velocity distribution")
 
