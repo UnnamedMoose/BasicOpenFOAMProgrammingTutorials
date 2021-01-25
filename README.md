@@ -77,7 +77,7 @@ case control files, if necessary. Hence, the easiest way to use the tutorials
 effectively is to open up the source code, read it, use the comments to understand
 it, test it, and then tweak it to your liking.
 
-Copyright by Artur K. Lidtke, 2017-2018.
+Copyright by Artur K. Lidtke, 2017-2021.
 
 ## Disclaimer
 
