@@ -1,0 +1,3 @@
+#!/bin/bash
+blockMesh > log.blockMesh
+ofTutorial14
