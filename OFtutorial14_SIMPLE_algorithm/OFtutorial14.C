@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
         // Computing inverse of A matrix for ease of calculation; it is easy
         // as A is a diagonal matrix.
         volScalarField A_inv = 1.0/A;
-        // Interpolating it onto grid faces. This is done becayuse of how
+        // Interpolating it onto grid faces. This is done because of how
         // the laplacian operator works in OpenFOAM.
         surfaceScalarField A_inv_flux = fvc::interpolate(A_inv);
         // Computing HbyA field = H/A for ease of calculation
