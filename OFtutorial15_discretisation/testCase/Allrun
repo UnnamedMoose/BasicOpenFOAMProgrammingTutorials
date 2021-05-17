@@ -1,0 +1,6 @@
+#!/bin/bash
+
+blockMesh > log.blockMesh
+scalarTransportFoam
+
+echo "Now run: paraview --state=viewData.pvsm"
