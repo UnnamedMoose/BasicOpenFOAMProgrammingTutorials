@@ -30,7 +30,8 @@ divSchemes
     default         none;
 //    div(phi,T)      Gauss linearUpwind grad(T);
 //    div(phi,T)      Gauss upwind;
-    div(phi,T)      Gauss linear;
+//    div(phi,T)      Gauss linear;
+    div(phi,T)      Gauss myCustomScheme;
 }
 
 laplacianSchemes

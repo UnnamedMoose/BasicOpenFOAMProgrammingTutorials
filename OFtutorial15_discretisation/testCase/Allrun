@@ -4,3 +4,4 @@ blockMesh > log.blockMesh
 scalarTransportFoam
 
 echo "Now run: paraview --state=viewData.pvsm"
+echo "and then: python plotData.py"

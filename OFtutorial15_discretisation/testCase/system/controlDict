@@ -71,5 +71,8 @@ functions
     }
 }
 
+// include the custom scheme library
+libs ("libofTutorial15.so");
+
 // ************************************************************************* //
 
