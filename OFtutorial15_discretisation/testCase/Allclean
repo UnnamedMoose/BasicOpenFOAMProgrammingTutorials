@@ -1,2 +1,2 @@
 #!/bin/bash
-rm -rf constant/polyMesh/* log.* 0.* 1* 2*
+rm -rf constant/polyMesh/* log.* 0.* 1* 2* postProcessing

@@ -23,13 +23,13 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         1.5;
+endTime         0.99;
 
 deltaT          0.01;
 
 writeControl    timeStep;
 
-writeInterval   10;
+writeInterval   50;
 
 purgeWrite      0;
 
@@ -45,6 +45,31 @@ timePrecision   6;
 
 runTimeModifiable true;
 
+functions
+{
+    samplingLine
+    {
+        type            sets;
+        libs            ("libsampling.so");
+        writeControl    writeTime;
+
+        fields          (T);
+        interpolationScheme cellPoint;
+        setFormat   csv;
+
+        sets
+        (
+            centrelineData
+            {
+                type    lineCell;
+                axis    xyz;
+                nPoints 100;
+                start       (0 0.05 0.05);
+                end         (1 0.05 0.05);
+            }
+        );
+    }
+}
 
 // ************************************************************************* //
 

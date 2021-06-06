@@ -26,6 +26,35 @@ License
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
+
+/*
+scalarTransportFoam solver solves this:
+
+    while (simple.loop(runTime))
+    {
+        Info<< "Time = " << runTime.timeName() << nl << endl;
+
+        while (simple.correctNonOrthogonal())
+        {
+            fvScalarMatrix TEqn
+            (
+                fvm::ddt(T)
+              + fvm::div(phi, T)
+              - fvm::laplacian(DT, T)
+             ==
+                fvOptions(T)
+            );
+
+            TEqn.relax();
+            fvOptions.constrain(TEqn);
+            TEqn.solve();
+            fvOptions.correct(T);
+        }
+
+        runTime.write();
+    }
+*/
+
 int main(int argc, char *argv[])
 {
 	// Set up the case, parse command line options and create the grid
