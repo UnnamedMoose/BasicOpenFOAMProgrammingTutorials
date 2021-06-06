@@ -304,7 +304,8 @@ how custom behaviour may be implemented. Key place to pay attention to is the
 "weights" routine defined in "OFtutorial15.H".
 
 Test case used is a simple 1D flow with a dimensionless scalar field convecting
-a jump in the x-direction.
+a jump in the x-direction. Observe how the blended scheme is more accurate than
+pure upwind but avoids overshoot of the simple linear scheme.
 
 Recommended reading:
 - Excellent slides by WolfDynamics about theory of CFD as used in OpenFOAM:
