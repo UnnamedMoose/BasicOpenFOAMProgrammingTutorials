@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# starting simulation
+rm -f log.*
+rm -rf VTK
+foamListTimes -rm
+foamCleanPolyMesh
+echo "done"
