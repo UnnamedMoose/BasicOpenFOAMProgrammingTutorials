@@ -1,0 +1,657 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _7bdb509494-20201222 OPENFOAM=2012
+Arch   : "LSB;label=32;scalar=64"
+Exec   : OFtutorial16
+Date   : Jul 10 2021
+Time   : 18:38:28
+Host   : groundwater
+PID    : 24889
+I/O    : uncollated
+Case   : /home/ramkumar/OpenFOAM/ramkumar-v2012/run/codes/particleTracking_tutorial/OFtutorial16_particleTracking/testCase
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 5, maxFileModificationPolls 20)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+setting the current simlation time = 67
+
+reading velocity field.. 
+
+particle initially recides inside cell with ID = 180
+
+starting particle track
+
+iteration : 1
+	current position = (0.01 0.11875 0)
+	new position = (0.049685 0.118752 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0396779
+	currently reciding cell's id = 180
+
+iteration : 2
+	current position = (0.049685 0.118752 0)
+	new position = (0.0893701 0.118755 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0396779
+	currently reciding cell's id = 180
+
+iteration : 3
+	current position = (0.0893701 0.118755 0)
+	new position = (0.129055 0.118758 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0396573
+	currently reciding cell's id = 181
+
+iteration : 4
+	current position = (0.129055 0.118758 0)
+	new position = (0.16874 0.118761 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0396303
+	currently reciding cell's id = 182
+
+iteration : 5
+	current position = (0.16874 0.118761 0)
+	new position = (0.208425 0.118764 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0396038
+	currently reciding cell's id = 183
+
+iteration : 6
+	current position = (0.208425 0.118764 0)
+	new position = (0.24811 0.118768 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0395778
+	currently reciding cell's id = 184
+
+iteration : 7
+	current position = (0.24811 0.118768 0)
+	new position = (0.287795 0.118771 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0395778
+	currently reciding cell's id = 184
+
+iteration : 8
+	current position = (0.287795 0.118771 0)
+	new position = (0.32748 0.118775 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0395509
+	currently reciding cell's id = 185
+
+iteration : 9
+	current position = (0.32748 0.118775 0)
+	new position = (0.367165 0.118781 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0395238
+	currently reciding cell's id = 186
+
+iteration : 10
+	current position = (0.367165 0.118781 0)
+	new position = (0.40685 0.118788 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0394962
+	currently reciding cell's id = 187
+
+iteration : 11
+	current position = (0.40685 0.118788 0)
+	new position = (0.446535 0.118799 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0394683
+	currently reciding cell's id = 188
+
+iteration : 12
+	current position = (0.446535 0.118799 0)
+	new position = (0.48622 0.118809 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0394683
+	currently reciding cell's id = 188
+
+iteration : 13
+	current position = (0.48622 0.118809 0)
+	new position = (0.525905 0.118826 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0394405
+	currently reciding cell's id = 189
+
+iteration : 14
+	current position = (0.525905 0.118826 0)
+	new position = (0.56559 0.118853 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0394131
+	currently reciding cell's id = 190
+
+iteration : 15
+	current position = (0.56559 0.118853 0)
+	new position = (0.605275 0.118897 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0393861
+	currently reciding cell's id = 191
+
+iteration : 16
+	current position = (0.605275 0.118897 0)
+	new position = (0.64496 0.118975 0)
+	local distance travelled = 0.039685
+	local time taken = 0.039361
+	currently reciding cell's id = 192
+
+iteration : 17
+	current position = (0.64496 0.118975 0)
+	new position = (0.684645 0.119052 0)
+	local distance travelled = 0.039685
+	local time taken = 0.039361
+	currently reciding cell's id = 192
+
+iteration : 18
+	current position = (0.684645 0.119052 0)
+	new position = (0.72433 0.119188 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0393378
+	currently reciding cell's id = 193
+
+iteration : 19
+	current position = (0.72433 0.119188 0)
+	new position = (0.764014 0.119427 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0393198
+	currently reciding cell's id = 194
+
+iteration : 20
+	current position = (0.764014 0.119427 0)
+	new position = (0.803697 0.11985 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0393101
+	currently reciding cell's id = 195
+
+iteration : 21
+	current position = (0.803697 0.11985 0)
+	new position = (0.843375 0.120601 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0393174
+	currently reciding cell's id = 196
+
+iteration : 22
+	current position = (0.843375 0.120601 0)
+	new position = (0.883053 0.121351 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0393174
+	currently reciding cell's id = 196
+
+iteration : 23
+	current position = (0.883053 0.121351 0)
+	new position = (0.922716 0.122677 0)
+	local distance travelled = 0.039685
+	local time taken = 0.039359
+	currently reciding cell's id = 197
+
+iteration : 24
+	current position = (0.922716 0.122677 0)
+	new position = (0.962333 0.124994 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0394556
+	currently reciding cell's id = 198
+
+iteration : 25
+	current position = (0.962333 0.124994 0)
+	new position = (1.00182 0.128962 0)
+	local distance travelled = 0.039685
+	local time taken = 0.0397754
+	currently reciding cell's id = 199
+
+iteration : 26
+	current position = (1.00182 0.128962 0)
+	new position = (1.03456 0.133594 -9.76845e-21)
+	local distance travelled = 0.0330696
+	local time taken = 0.0327916
+	currently reciding cell's id = 600
+
+iteration : 27
+	current position = (1.03456 0.133594 -9.76845e-21)
+	new position = (1.06704 0.139842 4.28106e-21)
+	local distance travelled = 0.0330696
+	local time taken = 0.0328763
+	currently reciding cell's id = 601
+
+iteration : 28
+	current position = (1.06704 0.139842 4.28106e-21)
+	new position = (1.0991 0.147945 1.14564e-21)
+	local distance travelled = 0.0330696
+	local time taken = 0.0329233
+	currently reciding cell's id = 602
+
+iteration : 29
+	current position = (1.0991 0.147945 1.14564e-21)
+	new position = (1.13059 0.158051 -5.3114e-21)
+	local distance travelled = 0.0330696
+	local time taken = 0.0329506
+	currently reciding cell's id = 603
+
+iteration : 30
+	current position = (1.13059 0.158051 -5.3114e-21)
+	new position = (1.16132 0.170246 7.88334e-21)
+	local distance travelled = 0.0330696
+	local time taken = 0.0329648
+	currently reciding cell's id = 604
+
+iteration : 31
+	current position = (1.16132 0.170246 7.88334e-21)
+	new position = (1.19113 0.184567 -4.82952e-20)
+	local distance travelled = 0.0330696
+	local time taken = 0.0329671
+	currently reciding cell's id = 605
+
+iteration : 32
+	current position = (1.19113 0.184567 -4.82952e-20)
+	new position = (1.21982 0.20101 -1.54727e-19)
+	local distance travelled = 0.0330696
+	local time taken = 0.0329591
+	currently reciding cell's id = 606
+
+iteration : 33
+	current position = (1.21982 0.20101 -1.54727e-19)
+	new position = (1.24575 0.221544 -9.82352e-20)
+	local distance travelled = 0.0330696
+	local time taken = 0.0329199
+	currently reciding cell's id = 608
+
+iteration : 34
+	current position = (1.24575 0.221544 -9.82352e-20)
+	new position = (1.27003 0.243992 -9.82352e-20)
+	local distance travelled = 0.0330696
+	local time taken = 0.0328917
+	currently reciding cell's id = 609
+
+iteration : 35
+	current position = (1.27003 0.243992 -9.82352e-20)
+	new position = (1.29252 0.268239 -9.82352e-20)
+	local distance travelled = 0.0330696
+	local time taken = 0.0328594
+	currently reciding cell's id = 610
+
+iteration : 36
+	current position = (1.29252 0.268239 -9.82352e-20)
+	new position = (1.31306 0.294151 -1.39396e-19)
+	local distance travelled = 0.0330696
+	local time taken = 0.0328241
+	currently reciding cell's id = 611
+
+iteration : 37
+	current position = (1.31306 0.294151 -1.39396e-19)
+	new position = (1.33154 0.321578 -1.51594e-19)
+	local distance travelled = 0.0330696
+	local time taken = 0.0327865
+	currently reciding cell's id = 612
+
+iteration : 38
+	current position = (1.33154 0.321578 -1.51594e-19)
+	new position = (1.348 0.350687 -1.51856e-19)
+	local distance travelled = 0.0334391
+	local time taken = 0.0341422
+	currently reciding cell's id = 593
+
+iteration : 39
+	current position = (1.348 0.350687 -1.51856e-19)
+	new position = (1.36214 0.38099 -1.74576e-19)
+	local distance travelled = 0.0334391
+	local time taken = 0.0340962
+	currently reciding cell's id = 594
+
+iteration : 40
+	current position = (1.36214 0.38099 -1.74576e-19)
+	new position = (1.37387 0.412304 -1.67568e-19)
+	local distance travelled = 0.0334391
+	local time taken = 0.0340492
+	currently reciding cell's id = 595
+
+iteration : 41
+	current position = (1.37387 0.412304 -1.67568e-19)
+	new position = (1.38057 0.445064 -1.38588e-19)
+	local distance travelled = 0.0334391
+	local time taken = 0.0339545
+	currently reciding cell's id = 597
+
+iteration : 42
+	current position = (1.38057 0.445064 -1.38588e-19)
+	new position = (1.38469 0.478248 -1.24406e-19)
+	local distance travelled = 0.0334391
+	local time taken = 0.0339073
+	currently reciding cell's id = 598
+
+iteration : 43
+	current position = (1.38469 0.478248 -1.24406e-19)
+	new position = (1.3862 0.511653 -1.30328e-19)
+	local distance travelled = 0.0334391
+	local time taken = 0.0338606
+	currently reciding cell's id = 599
+
+iteration : 44
+	current position = (1.3862 0.511653 -1.30328e-19)
+	new position = (1.38509 0.545074 -1.30328e-19)
+	local distance travelled = 0.0334391
+	local time taken = 0.0338144
+	currently reciding cell's id = 980
+
+iteration : 45
+	current position = (1.38509 0.545074 -1.30328e-19)
+	new position = (1.3813 0.578661 -1.28404e-19)
+	local distance travelled = 0.0338006
+	local time taken = 0.0351209
+	currently reciding cell's id = 961
+
+iteration : 46
+	current position = (1.3813 0.578661 -1.28404e-19)
+	new position = (1.37489 0.611848 -1.35798e-19)
+	local distance travelled = 0.0338006
+	local time taken = 0.0350672
+	currently reciding cell's id = 962
+
+iteration : 47
+	current position = (1.37489 0.611848 -1.35798e-19)
+	new position = (1.36591 0.644432 -1.90593e-19)
+	local distance travelled = 0.0338006
+	local time taken = 0.035014
+	currently reciding cell's id = 963
+
+iteration : 48
+	current position = (1.36591 0.644432 -1.90593e-19)
+	new position = (1.3544 0.676213 -1.29749e-19)
+	local distance travelled = 0.0338006
+	local time taken = 0.034961
+	currently reciding cell's id = 964
+
+iteration : 49
+	current position = (1.3544 0.676213 -1.29749e-19)
+	new position = (1.34045 0.706999 -1.15945e-19)
+	local distance travelled = 0.0338006
+	local time taken = 0.0349082
+	currently reciding cell's id = 965
+
+iteration : 50
+	current position = (1.34045 0.706999 -1.15945e-19)
+	new position = (1.32414 0.736605 -1.87847e-19)
+	local distance travelled = 0.0338006
+	local time taken = 0.034855
+	currently reciding cell's id = 966
+
+iteration : 51
+	current position = (1.32414 0.736605 -1.87847e-19)
+	new position = (1.30321 0.763599 -1.87847e-19)
+	local distance travelled = 0.0341546
+	local time taken = 0.0360199
+	currently reciding cell's id = 948
+
+iteration : 52
+	current position = (1.30321 0.763599 -1.87847e-19)
+	new position = (1.28027 0.788905 -1.72727e-19)
+	local distance travelled = 0.0341546
+	local time taken = 0.0359428
+	currently reciding cell's id = 949
+
+iteration : 53
+	current position = (1.28027 0.788905 -1.72727e-19)
+	new position = (1.25547 0.812386 -2.02328e-19)
+	local distance travelled = 0.0341546
+	local time taken = 0.0358543
+	currently reciding cell's id = 950
+
+iteration : 54
+	current position = (1.25547 0.812386 -2.02328e-19)
+	new position = (1.22896 0.833922 -2.01955e-19)
+	local distance travelled = 0.0341546
+	local time taken = 0.035749
+	currently reciding cell's id = 951
+
+iteration : 55
+	current position = (1.22896 0.833922 -2.01955e-19)
+	new position = (1.20092 0.853416 -1.37223e-19)
+	local distance travelled = 0.0341546
+	local time taken = 0.0356199
+	currently reciding cell's id = 952
+
+iteration : 56
+	current position = (1.20092 0.853416 -1.37223e-19)
+	new position = (1.17151 0.870794 -1.49913e-19)
+	local distance travelled = 0.0341546
+	local time taken = 0.0354574
+	currently reciding cell's id = 953
+
+iteration : 57
+	current position = (1.17151 0.870794 -1.49913e-19)
+	new position = (1.14094 0.886012 -1.82479e-19)
+	local distance travelled = 0.0341546
+	local time taken = 0.03525
+	currently reciding cell's id = 954
+
+iteration : 58
+	current position = (1.14094 0.886012 -1.82479e-19)
+	new position = (1.10937 0.899061 -2.18239e-19)
+	local distance travelled = 0.0341546
+	local time taken = 0.0349829
+	currently reciding cell's id = 955
+
+iteration : 59
+	current position = (1.10937 0.899061 -2.18239e-19)
+	new position = (1.07662 0.909897 -1.67121e-19)
+	local distance travelled = 0.0345013
+	local time taken = 0.0357011
+	currently reciding cell's id = 936
+
+iteration : 60
+	current position = (1.07662 0.909897 -1.67121e-19)
+	new position = (1.04324 0.918623 -1.44901e-19)
+	local distance travelled = 0.0345013
+	local time taken = 0.0351794
+	currently reciding cell's id = 937
+
+iteration : 61
+	current position = (1.04324 0.918623 -1.44901e-19)
+	new position = (1.00941 0.925397 -1.47235e-19)
+	local distance travelled = 0.0345013
+	local time taken = 0.0345249
+	currently reciding cell's id = 938
+
+iteration : 62
+	current position = (1.00941 0.925397 -1.47235e-19)
+	new position = (0.9749 0.930205 -1.47235e-19)
+	local distance travelled = 0.0348413
+	local time taken = 0.0345166
+	currently reciding cell's id = 919
+
+iteration : 63
+	current position = (0.9749 0.930205 -1.47235e-19)
+	new position = (0.935345 0.93342 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0378962
+	currently reciding cell's id = 1300
+
+iteration : 64
+	current position = (0.935345 0.93342 -1.47235e-19)
+	new position = (0.895705 0.935302 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0367735
+	currently reciding cell's id = 1301
+
+iteration : 65
+	current position = (0.895705 0.935302 -1.47235e-19)
+	new position = (0.856036 0.936421 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.036005
+	currently reciding cell's id = 1302
+
+iteration : 66
+	current position = (0.856036 0.936421 -1.47235e-19)
+	new position = (0.816366 0.937541 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.036005
+	currently reciding cell's id = 1302
+
+iteration : 67
+	current position = (0.816366 0.937541 -1.47235e-19)
+	new position = (0.776685 0.938078 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0354742
+	currently reciding cell's id = 1283
+
+iteration : 68
+	current position = (0.776685 0.938078 -1.47235e-19)
+	new position = (0.737001 0.938358 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0351912
+	currently reciding cell's id = 1284
+
+iteration : 69
+	current position = (0.737001 0.938358 -1.47235e-19)
+	new position = (0.697316 0.938478 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0350378
+	currently reciding cell's id = 1285
+
+iteration : 70
+	current position = (0.697316 0.938478 -1.47235e-19)
+	new position = (0.657631 0.938507 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349666
+	currently reciding cell's id = 1286
+
+iteration : 71
+	current position = (0.657631 0.938507 -1.47235e-19)
+	new position = (0.617946 0.938536 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349666
+	currently reciding cell's id = 1286
+
+iteration : 72
+	current position = (0.617946 0.938536 -1.47235e-19)
+	new position = (0.578261 0.93852 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349442
+	currently reciding cell's id = 1287
+
+iteration : 73
+	current position = (0.578261 0.93852 -1.47235e-19)
+	new position = (0.538576 0.938489 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349435
+	currently reciding cell's id = 1288
+
+iteration : 74
+	current position = (0.538576 0.938489 -1.47235e-19)
+	new position = (0.498891 0.938459 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349491
+	currently reciding cell's id = 1289
+
+iteration : 75
+	current position = (0.498891 0.938459 -1.47235e-19)
+	new position = (0.459206 0.938438 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349552
+	currently reciding cell's id = 1290
+
+iteration : 76
+	current position = (0.459206 0.938438 -1.47235e-19)
+	new position = (0.419521 0.938417 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349552
+	currently reciding cell's id = 1290
+
+iteration : 77
+	current position = (0.419521 0.938417 -1.47235e-19)
+	new position = (0.379836 0.938408 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349589
+	currently reciding cell's id = 1291
+
+iteration : 78
+	current position = (0.379836 0.938408 -1.47235e-19)
+	new position = (0.340151 0.938413 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349595
+	currently reciding cell's id = 1292
+
+iteration : 79
+	current position = (0.340151 0.938413 -1.47235e-19)
+	new position = (0.300466 0.938433 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349568
+	currently reciding cell's id = 1293
+
+iteration : 80
+	current position = (0.300466 0.938433 -1.47235e-19)
+	new position = (0.260781 0.938452 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349568
+	currently reciding cell's id = 1293
+
+iteration : 81
+	current position = (0.260781 0.938452 -1.47235e-19)
+	new position = (0.221096 0.938484 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349506
+	currently reciding cell's id = 1294
+
+iteration : 82
+	current position = (0.221096 0.938484 -1.47235e-19)
+	new position = (0.181411 0.938529 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349426
+	currently reciding cell's id = 1295
+
+iteration : 83
+	current position = (0.181411 0.938529 -1.47235e-19)
+	new position = (0.141726 0.938582 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.034934
+	currently reciding cell's id = 1296
+
+iteration : 84
+	current position = (0.141726 0.938582 -1.47235e-19)
+	new position = (0.102041 0.938644 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.034925
+	currently reciding cell's id = 1297
+
+iteration : 85
+	current position = (0.102041 0.938644 -1.47235e-19)
+	new position = (0.0623559 0.938705 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.034925
+	currently reciding cell's id = 1297
+
+iteration : 86
+	current position = (0.0623559 0.938705 -1.47235e-19)
+	new position = (0.0226709 0.938772 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.0349174
+	currently reciding cell's id = 1298
+
+iteration : 87
+	current position = (0.0226709 0.938772 -1.47235e-19)
+	new position = (-0.0170141 0.938844 -1.47235e-19)
+	local distance travelled = 0.039685
+	local time taken = 0.03491
+	currently reciding cell's id = 1299
+
+
+Particle left the mesh domain! 
+
+
+Total distance travelled = 3.22955
+Total time taken = 3.13573
+
+writing particle's path as VTK file...	 done.
+
+ExecutionTime = 0.03 s  ClockTime = 0 s
+
+End
+

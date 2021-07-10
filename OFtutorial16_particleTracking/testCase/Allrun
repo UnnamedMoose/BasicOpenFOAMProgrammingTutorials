@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "preparing blockMesh"
+blockMesh > log.blockMesh 2>&1
+echo "running simpleFoam solver"
+simpleFoam > log.simpleFoam 2>&1
+
+echo "starting particle tracking"
+OFtutorial16 2>&1 | tee log.particleTracking
