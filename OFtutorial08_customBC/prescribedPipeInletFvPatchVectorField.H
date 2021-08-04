@@ -138,39 +138,6 @@ public:
             const DimensionedField<vector, volMesh>&
         );
 
-        //- Construct from patch, internal field and dictionary
-        prescribedPipeInletFvPatchVectorField
-        (
-            const fvPatch&,
-            const DimensionedField<vector, volMesh>&,
-            const dictionary&
-        );
-
-        //- Construct by mapping given prescribedPipeInletFvPatchVectorField
-        //  onto a new patch
-        prescribedPipeInletFvPatchVectorField
-        (
-            const prescribedPipeInletFvPatchVectorField&,
-            const fvPatch&,
-            const DimensionedField<vector, volMesh>&,
-            const fvPatchFieldMapper&
-        );
-
-        //- Construct as copy
-        prescribedPipeInletFvPatchVectorField
-        (
-            const prescribedPipeInletFvPatchVectorField&
-        );
-
-        //- Construct and return a clone
-        virtual tmp<fvPatchVectorField> clone() const
-        {
-            return tmp<fvPatchVectorField>
-            (
-                new prescribedPipeInletFvPatchVectorField(*this)
-            );
-        }
-
         //- Construct as copy setting internal field reference
         prescribedPipeInletFvPatchVectorField
         (
@@ -189,6 +156,29 @@ public:
                 new prescribedPipeInletFvPatchVectorField(*this, iF)
             );
         }
+
+        //- Construct from patch, internal field and dictionary
+        prescribedPipeInletFvPatchVectorField
+        (
+            const fvPatch&,
+            const DimensionedField<vector, volMesh>&,
+            const dictionary&,
+            const bool valueRequired=true
+        );
+
+        //- Construct by mapping given prescribedPipeInletFvPatchVectorField
+        //  onto a new patch
+        prescribedPipeInletFvPatchVectorField
+        (
+            const prescribedPipeInletFvPatchVectorField&,
+            const fvPatch&,
+            const DimensionedField<vector, volMesh>&,
+            const fvPatchFieldMapper&,
+            const bool mappingRequired=true
+        );
+
+        //- Disallow copy without setting internal field reference
+        prescribedPipeInletFvPatchVectorField(const prescribedPipeInletFvPatchVectorField&) = delete;
 
     // Member functions
 
