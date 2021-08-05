@@ -1,0 +1,5 @@
+#!/bin/bash
+
+blockMesh > log.blockMesh
+simpleFoam
+echo "Now run: paraview --state=viewData.pvsm"

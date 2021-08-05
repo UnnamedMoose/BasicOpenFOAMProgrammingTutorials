@@ -1,0 +1,58 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  3.0.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default none;
+}
+
+gradSchemes
+{
+    default none;
+    // Gradient of the scalar variable, \beta
+    grad(beta) Gauss linear;
+}
+
+divSchemes
+{
+    default none;
+	// Convective term discretisation for the scalar variable
+	// NOTE: convection of scalars in OpenFOAM is expressed using the flux field rather than cell-centred velocity
+	div(phi,beta) bounded Gauss upwind;
+}
+
+laplacianSchemes
+{
+    default none;
+    // Laplacian scheme to compute the diffusive term, \gamma \nabla^2 \beta, in the scalar transport equation
+    laplacian(gamma,beta) Gauss linear corrected;
+}
+
+interpolationSchemes
+{
+    default none;
+    // interpolation scheme for U for computing the flux, phi
+    interpolate(U) linear;
+}
+
+snGradSchemes
+{
+    default none;
+}
+
+
+// ************************************************************************* //

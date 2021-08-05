@@ -1,0 +1,5 @@
+customClass.C
+derivedClass.C
+OFtutorial6.C
+
+EXE = $(FOAM_USER_APPBIN)/ofTutorial6

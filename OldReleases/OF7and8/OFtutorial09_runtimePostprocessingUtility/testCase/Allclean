@@ -1,0 +1,14 @@
+#!/bin/sh
+cd ${0%/*} || exit 1    # run from this directory
+
+rm -f log*
+
+rm -rf processor* postProcessing
+
+rm -rf constant/polyMesh/*
+rm -rf constant/triSurface/*.eMesh*
+rm -rf constant/triSurface/*.obj*
+rm -rf constant/extendedFeatureEdgeMesh/
+
+rm -rf 0 1* 2* 3* 4* 5* 6* 7* 8* 9*
+# ----------------------------------------------------------------- end-of-file

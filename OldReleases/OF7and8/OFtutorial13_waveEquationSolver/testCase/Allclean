@@ -1,0 +1,6 @@
+#!/bin/bash
+rm -f log.waveFoam log.setFields log.blockMesh
+foamListTimes -rm
+rm -r 0
+cp -r 0.orig 0
+rm -rf VTK

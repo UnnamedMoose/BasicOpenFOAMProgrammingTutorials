@@ -1,0 +1,5 @@
+#!/bin/bash
+
+blockMesh > log.blockMesh
+ofTutorial10
+echo "Now run: paraview --state=viewData.pvsm"
