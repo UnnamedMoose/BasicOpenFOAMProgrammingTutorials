@@ -16,9 +16,6 @@ FoamFile
 
 scale   1;
 
-// getting some constants
-PI #eval "4.0*atan(1)";
-
 vertices
 (
     name v1 (0 0 -0.05)
@@ -54,15 +51,15 @@ blocks
 
 edges
 (
-    arc v2 v3 (#eval "0.5*cos($PI/-4)+1.0" #eval "0.5*sin($PI/-4)+0.5" -0.05)
-    arc v12 v13 (#eval "0.5*cos($PI/-4)+1.0" #eval "0.5*sin($PI/-4)+0.5" 0.05)
-    arc v9 v8 (#eval "0.25*cos($PI/-4)+1.0" #eval "0.25*sin($PI/-4)+0.5" -0.05)
-    arc v19 v18 (#eval "0.25*cos($PI/-4)+1.0" #eval "0.25*sin($PI/-4)+0.5" 0.05)
+    arc v2 v3 (#calc "0.5*cos(3.14159265359/-4)+1.0" #calc "0.5*sin(3.14159265359/-4)+0.5" -0.05)
+    arc v12 v13 (#calc "0.5*cos(3.14159265359/-4)+1.0" #calc "0.5*sin(3.14159265359/-4)+0.5" 0.05)
+    arc v9 v8 (#calc "0.25*cos(3.14159265359/-4)+1.0" #calc "0.25*sin(3.14159265359/-4)+0.5" -0.05)
+    arc v19 v18 (#calc "0.25*cos(3.14159265359/-4)+1.0" #calc "0.25*sin(3.14159265359/-4)+0.5" 0.05)
 
-    arc v3 v4 (#eval "0.5*cos($PI/4)+1.0" #eval "0.5*sin($PI/4)+0.5" -0.05)
-    arc v13 v14 (#eval "0.5*cos($PI/4)+1.0" #eval "0.5*sin($PI/4)+0.5" 0.05)
-    arc v8 v7 (#eval "0.25*cos($PI/4)+1.0" #eval "0.25*sin($PI/4)+0.5" -0.05)
-    arc v18 v17 (#eval "0.25*cos($PI/4)+1.0" #eval "0.25*sin($PI/4)+0.5" 0.05)
+    arc v3 v4 (#calc "0.5*cos(3.14159265359/4)+1.0" #calc "0.5*sin(3.14159265359/4)+0.5" -0.05)
+    arc v13 v14 (#calc "0.5*cos(3.14159265359/4)+1.0" #calc "0.5*sin(3.14159265359/4)+0.5" 0.05)
+    arc v8 v7 (#calc "0.25*cos(3.14159265359/4)+1.0" #calc "0.25*sin(3.14159265359/4)+0.5" -0.05)
+    arc v18 v17 (#calc "0.25*cos(3.14159265359/4)+1.0" #calc "0.25*sin(3.14159265359/4)+0.5" 0.05)
 );
 
 defaultPatch

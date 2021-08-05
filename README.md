@@ -275,7 +275,7 @@ file "output.mp4" is the simulation output generated as an animation.
 Contributed by: Ramkumar
 
 Shows how the matrix operations are performed in order to solve
-the governing flow equations using the SIMPLE algorithm. 
+the governing flow equations using the SIMPLE algorithm.
 It is worth noting that the code is intended to show only how the equations are solved.
 Hence, the optimization and convergence check conditions are omitted to make the
 code simpler to understand.
@@ -317,3 +317,13 @@ Recommended reading:
 ---------
 ## Tutorial 16 - Lagrangian Particle Tracking
 
+An custom application for tracking a massless particle through an existing flow field
+is developed. This tutorial introduces following concepts:
+
+* setting simulation time to read data at particular saved timestep.
+* datatypes *point* and *pointList*, which are nothing but vector datatypes dedicated to coordinates.
+* a mesh function to get the id of a cell within which a given point coordinates resides.
+* Lagrangian massless particle tracking.
+* writing VTK file for visualizing the particle's track.
+
+![output](particlePath.png)

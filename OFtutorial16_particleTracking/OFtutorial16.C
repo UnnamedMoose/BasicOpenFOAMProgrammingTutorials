@@ -36,6 +36,48 @@ particle to leave the domain, and draw path of the particle.
 
 #include "fvCFD.H"
 
+void saveTrajectoryToVtk(DynamicList<point>& path, fvMesh& mesh)
+{
+    // Used for writing a vtk file that contains a single polyline defined by
+    // a list of points.
+    // For VTK file format specification please refer to:
+    // https://vtk.org/wp-content/uploads/2015/04/file-formats.pdf
+
+    Info << nl << "Writing particle's path as VTK file";
+
+    // making a separate directory for storing VTK file
+    fileName VTK_dir = mesh.time().path()/"VTK";
+    mkDir(VTK_dir);
+
+    // Create file pointer.
+    autoPtr<OFstream> vtkFilePtr;
+    vtkFilePtr.reset(new OFstream(VTK_dir/"particle_path.vtk"));
+
+    // Write vtk header.
+    vtkFilePtr() << "# vtk DataFile Version 2.0" << endl << "particle_path" << endl << "ASCII" << endl << "DATASET POLYDATA" << endl;
+    vtkFilePtr() << nl;
+
+    // Write points header.
+    vtkFilePtr() << "POINTS " << path.size() << " DOUBLE" << endl;
+
+    // Write point coordinates.
+    forAll(path, ipt)
+    {
+      vtkFilePtr() << path[ipt].x() << " " << path[ipt].y() << " " << path[ipt].z() << endl;
+    }
+    vtkFilePtr() << nl;
+
+    // Write lines header and list.
+    vtkFilePtr() << "LINES 1 " << path.size() + 1 << endl; // <no of lines> <size of point indices list>
+    vtkFilePtr() << path.size() << endl; // <no of points> <point list .....>
+    forAll(path, ipt)
+    {
+      vtkFilePtr() << ipt << endl;
+    }
+
+    Info << tab << " Done writing VTK." << endl;
+}
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
@@ -44,16 +86,13 @@ int main(int argc, char *argv[])
     #include "createTime.H"
     #include "createMesh.H"
 
-    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+    // Select the latest available time step solution.
+    instantList times = runTime.times(); // Get all the available times.
+    runTime.setTime(times.last(), 0); // Set the latest/last one as the current time value.
+    Info << nl << "Using flow field data from time = " << runTime.timeName() << endl;
 
-    // selecting latest available time step solution
-    instantList times = runTime.times(); // getting all available times
-    runTime.setTime(times.last(),0); // setting the latest/last one as current
-    Info << nl << "setting the current simlation time = "
-        << runTime.timeName() << endl;
-
-    // reading velocity field from latest solutiom time folder
-    Info << nl << "reading velocity field.. " <<  endl;
+    // Read the velocity field from latest solutiom time folder.
+    Info << nl << "Reading velocity field" <<  endl;
     volVectorField U
     (
         IOobject
@@ -67,24 +106,22 @@ int main(int argc, char *argv[])
         mesh
     );
 
-    // defining initial position of particle
-    // in this tutorial only single particle is considered, and can later be
-    // extended to number of particles easily by the learners.
-    point particle(0.01,0.11875,0);
+    // Define initial position of the particle. Hard coded for simplicity - see
+    // tutorial 01 for handling I/O if this were to be extended.
+    point particle(0.01, 0.11875, 0);
 
-    // preparing the lists of particle's positions, and a couple of scalar
-    // variables to store its total travel time and distance
-    pointList particlePositions;
+    // Prepare the lists of particle positions, and a couple of scalar
+    // variables to store its total travel time and distance.
+    DynamicList<point> particlePositions;
     scalar timeTaken(0);
     scalar distanceTravelled(0);
 
-    // adding initial position to the particlePositions list
+    // Add the initial position to the particlePositions list.
     particlePositions.append(particle);
 
-    // now, in order to start, we need to find the cell in which our mass-less
+    // In order to start, we need to find the cell in which the massless
     // particle resides, so that the flow velocity of that cell can be used
     // to determine its next position.
-    // so finding id of a cell which encloses the particle's coordinates
     label cellId = mesh.findCell(particle);
 
     Info << nl << "particle initially recides inside cell with ID = "
@@ -94,81 +131,73 @@ int main(int argc, char *argv[])
     vector curPos = particle;
     vector newPos(0,0,0);
     label iterCount(1);
+    const label maxIters(100);
 
     // starting particle tracking
-    Info << nl << "starting particle track" << endl;
-    while(cellId != -1) // cellid will be -1 when particle leaves the mesh
+    Info << nl << "Starting particle tracking" << endl;
+    while (cellId != -1) // cellid will be -1 when particle leaves the domain.
     {
-        // getting current reciding cell's velocity
+        // Get velocity for the cell in which the particle resides.
         vector velocity = U[cellId];
 
-        // getting current reciding cell's characteristic length i.e. cuberoot
-        // of its volume
+        // Get the current cell's characteristic length i.e. cubic root of its volume.
         scalar charLen = Foam::cbrt(mesh.V()[cellId]);
 
-        // calculating characterstic timestep from above variables
+        // Calculate the characterstic timestep.
         scalar dt = charLen/mag(velocity);
 
-        // calculating the new position of particle based on its current
-        // position and flow velocity
+        // Calculate new position of the particle based on its current position
+        // and local flow velocity.
         newPos = curPos + velocity*dt;
 
-        // calculating local distance travelled
+        // Compute the distance travelled within this time step.
         scalar dist = mag(newPos - curPos);
 
         // updating on terminal
-        Info << nl << "iteration : " << iterCount << nl
+        Info << nl << "Lagrangian time step: " << iterCount << nl
             << tab << "current position = " << curPos << nl
             << tab << "new position = " << newPos << nl
             << tab << "local distance travelled = " << dist << nl
             << tab << "local time taken = " << dt << nl
-            << tab << "currently reciding cell's id = " << cellId << endl;
+            << tab << "currently reciding cell no. = " << cellId << endl;
 
-        // appending the calculated values to the list and variables
+        // Append the calculated values to the list and variables.
         distanceTravelled += dist;
         timeTaken += dt;
         particlePositions.append(newPos);
         curPos = newPos;
         iterCount++;
 
-        // finding the new cell's id, where the particle moved into
+        // Find the new cell into which the particle has moved.
+        // NOTE: this is the most expensive part of the code because it triggers
+        //  a global mesh loop for each Lagrangian time step. The associated cost
+        //  would grow rapidly with adding more particles so a better solution would
+        //  be to check for crossing of the current particle path with the faces of
+        //  the old owner cell and perform local updates. This is too involved for
+        //  the purpose of this short demonstration, however.
         cellId = mesh.findCell(curPos);
+
+        // Safeguard against infinite loops.
+        if (iterCount > maxIters)
+        {
+            FatalErrorInFunction << "Maximum number of Lagrangian time steps exceeded." << abort(FatalError);
+        }
     }
 
     if (cellId == -1)  // i.e. particle left the mesh domain
     {
-        Info << nl << nl << "Particle left the mesh domain! " << nl << endl;
-        Info << nl << "Total distance travelled = " << distanceTravelled << nl
-             << "Total time taken = " << timeTaken <<  endl;
+        Info << nl << nl << "Particle left the domain! " << nl
+            << "Total distance travelled = " << distanceTravelled << nl
+            << "Total time taken = " << timeTaken <<  endl;
     }
 
-    // writing the particle's path as a poly line under VTK file
-    #include "writeVTK.H"
+    // Write particle's path as a polyline into a VTK file.
+    saveTrajectoryToVtk(particlePositions, mesh);
 
     Info<< nl;
-    runTime.printExecutionTime(Info);
-
     Info<< "End\n" << endl;
 
     return 0;
 }
-/*-----------------------------------------------------------------------------
-
-  P.S:
-  this code is made for tutorial purpose only as this method of tracking a
-  massless particle can be expensive especially when the mesh size is quite
-  high. the main CPU intensive task will be given by the following line
-
-        cellId = mesh.findCell(curPos);
-
-  as for each time, the function will check all the cells present in the
-  domain. Hence this code can be further improved by the learners and make
-  it optimized for larger domains.
-
-  one suggestion is to reduce the search range by looking at the nearby cells
-  to the current cell where the particle recides.
-
------------------------------------------------------------------------------*/
-
 
 // ************************************************************************* //

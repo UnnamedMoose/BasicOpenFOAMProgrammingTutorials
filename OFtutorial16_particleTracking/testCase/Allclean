@@ -4,5 +4,4 @@
 rm -f log.*
 rm -rf VTK
 foamListTimes -rm
-foamCleanPolyMesh
-echo "done"
+rm -rf constant/polyMesh/* dynamicCode
