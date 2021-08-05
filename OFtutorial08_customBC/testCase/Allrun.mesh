@@ -21,7 +21,7 @@ sed -i "s/expRatWall.*;/expRatWall   $expRatWall;/g" system/blockMeshDict
 blockMesh
 
 # scale to give the mesh the desired size
-transformPoints -scale "($Lpipe $Rpipe $Rpipe)"
+transformPoints "scale=(${Lpipe} ${Rpipe} ${Rpipe})"
 
 # mirror the grid as required
 sed -i "s/normalVector.*;/normalVector (0 1 0);/g" system/mirrorMeshDict

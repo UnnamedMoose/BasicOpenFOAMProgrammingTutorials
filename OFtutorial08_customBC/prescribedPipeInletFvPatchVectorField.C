@@ -48,7 +48,8 @@ Foam::prescribedPipeInletFvPatchVectorField::prescribedPipeInletFvPatchVectorFie
 (
     const fvPatch& p,
     const DimensionedField<vector, volMesh>& iF,
-    const dictionary& dict
+    const dictionary& dict,
+    const bool valueRequired
 )
 :
     // NOTE: this constructor reads all of the control parameters from the boundary
@@ -83,7 +84,8 @@ Foam::prescribedPipeInletFvPatchVectorField::prescribedPipeInletFvPatchVectorFie
     const prescribedPipeInletFvPatchVectorField& ptf,
     const fvPatch& p,
     const DimensionedField<vector, volMesh>& iF,
-    const fvPatchFieldMapper& mapper
+    const fvPatchFieldMapper& mapper,
+    const bool mappingRequired
 )
 :
     // NOTE: this constructor, and the two subsequent ones, transfer data to the
@@ -95,20 +97,6 @@ Foam::prescribedPipeInletFvPatchVectorField::prescribedPipeInletFvPatchVectorFie
 	centrepoint_(ptf.centrepoint_),
 	R_(ptf.R_),
 	lambda_(ptf.lambda_)
-{}
-
-Foam::prescribedPipeInletFvPatchVectorField::prescribedPipeInletFvPatchVectorField
-(
-    const prescribedPipeInletFvPatchVectorField& rifvpvf
-)
-:
-    fixedValueFvPatchVectorField(rifvpvf),
-    approximationType_(rifvpvf.approximationType_),
-    flowSpeed_(rifvpvf.flowSpeed_),
-    deltaByR_(rifvpvf.deltaByR_),
-    centrepoint_(rifvpvf.centrepoint_),
-    R_(rifvpvf.R_),
-    lambda_(rifvpvf.lambda_)
 {}
 
 Foam::prescribedPipeInletFvPatchVectorField::prescribedPipeInletFvPatchVectorField
@@ -127,24 +115,6 @@ Foam::prescribedPipeInletFvPatchVectorField::prescribedPipeInletFvPatchVectorFie
 {}
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
-
-// void Foam::prescribedPipeInletFvPatchVectorField::autoMap
-// (
-//     const fvPatchFieldMapper& m
-// )
-// {
-//     vectorField::autoMap(m);
-// }
-//
-//
-// void Foam::prescribedPipeInletFvPatchVectorField::rmap
-// (
-//     const fvPatchVectorField& ptf,
-//     const labelList& addr
-// )
-// {
-//     fixedValueFvPatchVectorField::rmap(ptf, addr);
-// }
 
 // NOTE: this is the key method which implements the actual maths for calculating
 // the inlet profiles.

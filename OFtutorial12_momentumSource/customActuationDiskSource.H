@@ -70,7 +70,7 @@ SourceFiles
 #define customActuationDiskSource_H
 
 #include "fvCFD.H"
-#include "fvOption.H"
+#include "fvModel.H"
 #include "fvMesh.H"
 #include "fvMatrix.H"
 #include "geometricOneField.H"
@@ -90,7 +90,7 @@ namespace fv
 
 class customActuationDiskSource
 :
-    public option
+    public fvModel
 {
 
 protected:
@@ -99,6 +99,9 @@ protected:
 
         // ---
         // specified in the dictionary
+
+        //- Name of the velocity field
+        word Uname_;
 
         //- Disk area normal
         vector diskDir_;
@@ -155,7 +158,7 @@ private:
         customActuationDiskSource(const customActuationDiskSource&);
 
         //- Disallow default bitwise assignment
-        void operator=(const customActuationDiskSource&);
+        void operator=(const customActuationDiskSource&) = delete;
 
 public:
 
@@ -180,6 +183,10 @@ public:
     // Member Functions
 
         // Access
+
+            //- Return the list of fields for which the fvModel adds source term
+            //  to the transport equation
+            virtual wordList addSupFields() const;
 
             // Return Cp
             scalar Cp() const
@@ -217,23 +224,23 @@ public:
             virtual void addSup
             (
                 fvMatrix<vector>& eqn,
-                const label fieldi
-            );
+                const word& fieldName
+            ) const;
 
             //- Source term to compressible momentum equation
             virtual void addSup
             (
                 const volScalarField& rho,
                 fvMatrix<vector>& eqn,
-                const label fieldi
-            );
+                const word& fieldName
+            ) const;
 
         // IO
 
             //- Read dictionary
             virtual bool read(const dictionary& dict);
-};
 
+};
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 

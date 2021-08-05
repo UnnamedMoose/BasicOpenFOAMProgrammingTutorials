@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# starting simulation
+rm -f log.*
+rm -rf VTK
+foamListTimes -rm
+rm -rf constant/polyMesh/* dynamicCode

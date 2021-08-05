@@ -1,0 +1,113 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+scale   1;
+
+vertices
+(
+    name v1 (0 0 -0.05)
+    name v2 (1 0 -0.05)
+    name v3 (1.5 0.5 -0.05)
+    name v4 (1 1 -0.05)
+    name v5 (0 1 -0.05)
+    name v6 (0 0.75 -0.05)
+    name v7 (1 0.75 -0.05)
+    name v8 (1.25 0.5 -0.05)
+    name v9 (1 0.25 -0.05)
+    name v10 (0 0.25 -0.05)
+
+    name v11 (0 0 0.05)
+    name v12 (1 0 0.05)
+    name v13 (1.5 0.5 0.05)
+    name v14 (1 1 0.05)
+    name v15 (0 1 0.05)
+    name v16 (0 0.75 0.05)
+    name v17 (1 0.75 0.05)
+    name v18 (1.25 0.5 0.05)
+    name v19 (1 0.25 0.05)
+    name v20 (0 0.25 0.05)
+);
+
+blocks
+(
+    hex (v1 v2 v9 v10 v11 v12 v19 v20) (20 20 1) simpleGrading (1 1 1)
+    hex (v2 v3 v8 v9 v12 v13 v18 v19) (20 20 1) simpleGrading (1 1 1)
+    hex (v3 v4 v7 v8 v13 v14 v17 v18) (20 20 1) simpleGrading (1 1 1)
+    hex (v4 v5 v6 v7 v14 v15 v16 v17) (20 20 1) simpleGrading (1 1 1)
+);
+
+edges
+(
+    arc v2 v3 (#calc "0.5*cos(3.14159265359/-4)+1.0" #calc "0.5*sin(3.14159265359/-4)+0.5" -0.05)
+    arc v12 v13 (#calc "0.5*cos(3.14159265359/-4)+1.0" #calc "0.5*sin(3.14159265359/-4)+0.5" 0.05)
+    arc v9 v8 (#calc "0.25*cos(3.14159265359/-4)+1.0" #calc "0.25*sin(3.14159265359/-4)+0.5" -0.05)
+    arc v19 v18 (#calc "0.25*cos(3.14159265359/-4)+1.0" #calc "0.25*sin(3.14159265359/-4)+0.5" 0.05)
+
+    arc v3 v4 (#calc "0.5*cos(3.14159265359/4)+1.0" #calc "0.5*sin(3.14159265359/4)+0.5" -0.05)
+    arc v13 v14 (#calc "0.5*cos(3.14159265359/4)+1.0" #calc "0.5*sin(3.14159265359/4)+0.5" 0.05)
+    arc v8 v7 (#calc "0.25*cos(3.14159265359/4)+1.0" #calc "0.25*sin(3.14159265359/4)+0.5" -0.05)
+    arc v18 v17 (#calc "0.25*cos(3.14159265359/4)+1.0" #calc "0.25*sin(3.14159265359/4)+0.5" 0.05)
+);
+
+defaultPatch
+{
+    type empty;
+    name frontAndBack;
+}
+
+boundary
+(
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (v1 v10 v20 v11)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (v5 v6 v16 v15)
+        );
+    }
+    upperWall
+    {
+        type wall;
+        faces
+        (
+            (v10 v9 v19 v20)
+            (v9 v8 v18 v19)
+            (v8 v7 v17 v18)
+            (v7 v6 v16 v17)
+        );
+    }
+    lowerWall
+    {
+        type wall;
+        faces
+        (
+            (v1 v2 v12 v11)
+            (v2 v3 v13 v12)
+            (v3 v4 v14 v13)
+            (v4 v5 v15 v14)
+        );
+    }
+);
+
+// ************************************************************************* //

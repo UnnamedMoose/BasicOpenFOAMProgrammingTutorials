@@ -1,0 +1,8 @@
+#!/bin/bash
+
+blockMesh > log.blockMesh 2>&1
+simpleFoam > log.simpleFoam 2>&1
+
+ofTutorial16 2>&1 | tee log.particleTracking
+
+echo "Now run paraview --state=viewData.pvsm"

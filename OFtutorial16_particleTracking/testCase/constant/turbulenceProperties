@@ -1,8 +1,8 @@
 /*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
-|  \\    /   O peration     | Version:  3.0.1                                 |
-|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|  \\    /   O peration     | Version:  v2012                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
 |    \\/     M anipulation  |                                                 |
 \*---------------------------------------------------------------------------*/
 FoamFile
@@ -11,24 +11,10 @@ FoamFile
     format      ascii;
     class       dictionary;
     location    "constant";
-    object      fvOptions;
+    object      turbulenceProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-actuationDisk
-{
-    type customActuationDiskSource;
-
-    upstreamPoint (-1.5 0 0);
-    diskDir (-1.0 0.5 0);
-    diskCentre (0 0 0);
-    D 1;
-    thickness 0.1;
-    Cp 0.386;
-    Ct 0.58;
-
-    fields (U);
-}
-
+simulationType laminar;
 
 // ************************************************************************* //
