@@ -34,7 +34,7 @@ namespace fv
     defineTypeNameAndDebug(customActuationDiskSource, 0);
     addToRunTimeSelectionTable
     (
-        option,
+        fvModel,
         customActuationDiskSource,
         dictionary
     );
@@ -83,26 +83,21 @@ Foam::fv::customActuationDiskSource::customActuationDiskSource
 )
 :
     // call the base class constructor
-    option(name, modelType, dict, mesh),
+    fvModel(name, modelType, dict, mesh),
     // read control parameters from dictionary
-    diskDir_(coeffs_.lookup("diskDir")),
-    diskCentre_(coeffs_.lookup("diskCentre")),
-    D_(readScalar(coeffs_.lookup("D"))),
-    t_(readScalar(coeffs_.lookup("thickness"))),
-    Cp_(readScalar(coeffs_.lookup("Cp"))),
-    Ct_(readScalar(coeffs_.lookup("Ct"))),
-    upstreamPoint_(coeffs_.lookup("upstreamPoint")),
+    Uname_(coeffs().lookup("Uname")),
+    diskDir_(coeffs().lookup("diskDir")),
+    diskCentre_(coeffs().lookup("diskCentre")),
+    D_(readScalar(coeffs().lookup("D"))),
+    t_(readScalar(coeffs().lookup("thickness"))),
+    Cp_(readScalar(coeffs().lookup("Cp"))),
+    Ct_(readScalar(coeffs().lookup("Ct"))),
+    upstreamPoint_(coeffs().lookup("upstreamPoint")),
     // initialise other member fields
     upstreamCellId_(-1),
     V_(0.0)
 {
     Info << tab << "- creating actuation disk zone: " << this->name() << endl;
-
-    // recover names of fields which are to be fed the sources into
-    coeffs_.lookup("fields") >> fieldNames_;
-    // prepare a list of boolean values for each field - used by the parent class
-    // to determine whether the sources have been applied yet or not.
-    applied_.setSize(fieldNames_.size(), false);
 
     // Locate the upstream cell used to apply velocity magnitude augment
     upstreamCellId_ = mesh.findCell(upstreamPoint_);
@@ -117,11 +112,11 @@ Foam::fv::customActuationDiskSource::customActuationDiskSource
     dimensionedVector x0 ("x0", dimLength, diskCentre_);
 
     // compute distance and normal vectors from origin of the disk to use for selection
-    scalarField R (mag(mesh_.C() - x0));
-    vectorField rHat ((mesh_.C() - x0) / mag(mesh_.C() - x0));
+    scalarField R (mag(mesh.C() - x0));
+    vectorField rHat ((mesh.C() - x0) / mag(mesh.C() - x0));
 
     // go over each cell in the grid and comapre it against selection criteria
-    for (label cellI = 0; cellI < mesh_.C().size(); cellI++)
+    for (label cellI = 0; cellI < mesh.C().size(); cellI++)
     {
         // determine distance from cell centre to disk axis and along the normal direction
         scalar dNormal = R[cellI] * (rHat[cellI] & diskDir_);
@@ -136,7 +131,7 @@ Foam::fv::customActuationDiskSource::customActuationDiskSource
     // Set volume information
     V_ = 0.0;
     forAll(cells_, i)
-        V_ += mesh_.V()[cells_[i]];
+        V_ += mesh.V()[cells_[i]];
     reduce(V_, sumOp<scalar>());
 
     // ===
@@ -150,13 +145,18 @@ Foam::fv::customActuationDiskSource::customActuationDiskSource
 
 // * * * * * * * * * * * * * * * Member Functions  * * * * * * * * * * * * * //
 
+Foam::wordList Foam::fv::customActuationDiskSource::addSupFields() const
+{
+    return wordList(1, Uname_);
+}
+
 void Foam::fv::customActuationDiskSource::addSup
 (
     fvMatrix<vector>& eqn,
-    const label fieldi
-)
+    const word& fieldName
+) const
 {
-    const scalarField& cellsV = mesh_.V();
+    const scalarField& cellsV = mesh().V();
     vectorField& Usource = eqn.source();
     const vectorField& U = eqn.psi();
 
@@ -177,10 +177,10 @@ void Foam::fv::customActuationDiskSource::addSup
 (
     const volScalarField& rho,
     fvMatrix<vector>& eqn,
-    const label fieldi
-)
+    const word& fieldName
+) const
 {
-    const scalarField& cellsV = mesh_.V();
+    const scalarField& cellsV = mesh().V();
     vectorField& Usource = eqn.source();
     const vectorField& U = eqn.psi();
 
@@ -199,14 +199,15 @@ void Foam::fv::customActuationDiskSource::addSup
 
 bool Foam::fv::customActuationDiskSource::read(const dictionary& dict)
 {
-    if (option::read(dict))
+    if (fvModel::read(dict))
     {
-        coeffs_.readIfPresent("diskDir", diskDir_);
-        coeffs_.readIfPresent("diskCentre", diskCentre_);
-        coeffs_.readIfPresent("D", D_);
-        coeffs_.readIfPresent("thickness", t_);
-        coeffs_.readIfPresent("Cp", Cp_);
-        coeffs_.readIfPresent("Ct", Ct_);
+        coeffs().readIfPresent("Uname", Uname_);
+        coeffs().readIfPresent("diskDir", diskDir_);
+        coeffs().readIfPresent("diskCentre", diskCentre_);
+        coeffs().readIfPresent("D", D_);
+        coeffs().readIfPresent("thickness", t_);
+        coeffs().readIfPresent("Cp", Cp_);
+        coeffs().readIfPresent("Ct", Ct_);
 
         checkData();
 

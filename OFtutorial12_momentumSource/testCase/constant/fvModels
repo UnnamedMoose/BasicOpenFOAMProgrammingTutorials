@@ -11,7 +11,7 @@ FoamFile
     format      ascii;
     class       dictionary;
     location    "constant";
-    object      fvOptions;
+    object      fvModels;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -27,7 +27,7 @@ actuationDisk
     Cp 0.386;
     Ct 0.58;
 
-    fields (U);
+    Uname U;
 }
 
 
