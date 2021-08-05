@@ -43,7 +43,8 @@ following people for offering their input:
 - Chris Coutinho (cbcoutinho) for spotting errors in README and parallel processing tutorial
 - Gerasimos Chourdakis (MakisH) for helping out with cleaning up the tutorial files
 - Germilly Barreto (Germilly) for suggesting a tutorial on command line argument parsing
-- Ramkumar (Ramkumar47) for contributing a new tutoral on waves and the SIMPLE algorithm (no. 13 and 14)
+- Ramkumar (Ramkumar47) for contributing a new tutoral on waves, the SIMPLE algorithm,
+    and particle tracking (no. 13, 14 and 16)
 
 ## How to use this resource
 
