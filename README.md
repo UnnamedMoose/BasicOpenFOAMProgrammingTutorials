@@ -326,4 +326,4 @@ is developed. This tutorial introduces following concepts:
 * Lagrangian massless particle tracking.
 * writing VTK file for visualizing the particle's track.
 
-![output](particlePath.png)
+![Alt text](OFtutorial16_particleTracking/testCase/particlePath.png?raw=true "Tutorial 16 - particle tracking")
